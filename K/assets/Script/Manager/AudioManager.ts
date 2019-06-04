@@ -28,7 +28,6 @@ export class AudioManager
             return;
         }
         let path = ConstValue.AUDIO_DIR + soundName;
-        //cc.audioEngine.play(cc.url.raw(path), loop?loop:false, volume?volume:1);
         cc.loader.loadRes(path, cc.AudioClip, function (err, clip) {
             if(err)
             {
@@ -67,7 +66,6 @@ export class AudioManager
         }
         cc.audioEngine.stopMusic();
         let path = ConstValue.AUDIO_DIR + soundName;
-        //cc.audioEngine.play(cc.url.raw(path), loop?loop:false, volume?volume:1);
         cc.loader.loadRes(path, cc.AudioClip, function (err, clip) {
             if(err)
             {

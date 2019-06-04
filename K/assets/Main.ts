@@ -1,6 +1,7 @@
 import { UIManager } from "./Script/Manager/UIManager";
 import LoadingUI from "./Script/UI/LoadingUI";
 import { ListenerManager } from "./Script/Manager/ListenerManager";
+import { AudioManager } from "./Script/Manager/AudioManager";
 
 const {ccclass, property} = cc._decorator;
 
