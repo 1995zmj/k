@@ -45,7 +45,7 @@ export default class LoadingUI extends BaseUI {
 
 
 
-    load(functionArray: Function[] )
+    load(functionArray: Function[] )  
     {
         
     }

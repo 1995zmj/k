@@ -1,5 +1,6 @@
 import { BaseConfigContainer, ConfigContainerClass } from "../Config/BaseConfigContainer";
 import { AnimalConfigContainer } from "../Config/AnimalConfigContainer";
+import { GridConfigContainer } from "../Config/GridConfigContainer";
 
 
 export class ConfigManager
@@ -21,6 +22,7 @@ export class ConfigManager
     public loadAllConfig(callback?: Function): void
     {
         this.loadConfig(AnimalConfigContainer, this.callback, callback);
+        this.loadConfig(GridConfigContainer, this.callback, callback);
     }
 
     public getConfig<T extends BaseConfigContainer>(configClass: ConfigContainerClass<T>): BaseConfigContainer

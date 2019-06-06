@@ -1,6 +1,7 @@
 export class ConstValue {
     public static readonly CONFIG_FILE_DIR = "config/";
     public static readonly PREFAB_UI_DIR = "prefab/ui/";
+    public static readonly PREFAB_POOL_DIR = "prefab/object/";
     public static readonly PREFAB_FISH_DIR = "prefab/fishs/";
     public static readonly PREFAB_TREASUREBOX_PATH = "prefab/treasureBox/TreasureBox";
     public static readonly AUDIO_DIR = "audio/";
