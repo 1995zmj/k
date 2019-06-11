@@ -1,4 +1,8 @@
 import { ConfigManager } from "./ConfigManager";
+import { PoolManager } from "./PoolManager";
+import { GameDataManager } from "./GameDataManager";
+import { ListenerManager } from "./ListenerManager";
+import { ListenerType } from "../Data/ListenerType";
 
 export enum GameState
 {
@@ -25,8 +29,21 @@ export class GameController
 
     gameState: GameState = GameState.IDLE;
 
+    curLoadedCount: number = 0;
+    sumLoadedCount: number = 0;
+
     public initGame()
     {
-        ConfigManager.getInstance().loadAllConfig()
+        this.sumLoadedCount = 2;
+        ConfigManager.getInstance().loadAllConfig(()=>{
+            this.curLoadedCount ++;
+            ListenerManager.getInstance().emit(ListenerType.UpdateLoadingProgress,this.curLoadedCount/this.sumLoadedCount);
+        });
+        PoolManager.getInstance().loadAllNodePool(()=>{
+            this.curLoadedCount ++;
+            ListenerManager.getInstance().emit(ListenerType.UpdateLoadingProgress,this.curLoadedCount/this.sumLoadedCount);
+        });
+        GameDataManager.getInstance().getGameData().initPlayerInfo();
+        GameDataManager.getInstance().getGameData().initShopInfo();
     }
 }

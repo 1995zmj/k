@@ -1,10 +1,14 @@
-import { BaseUI } from "./BaseUI";
-import { ConfigManager } from "../Manager/ConfigManager";
+import { AnimalConfigContainer } from "../Config/AnimalConfigContainer";
 import { GridConfigContainer } from "../Config/GridConfigContainer";
+import { ConfigManager } from "../Manager/ConfigManager";
 import { PoolManager } from "../Manager/PoolManager";
-import { GridNodePool } from "../Pool/GridNodePool";
+import { UIManager } from "../Manager/UIManager";
+import Animal from "../Object/Animal";
 import { AnimalNodePool } from "../Pool/AnimalNodePool";
+import { GridNodePool } from "../Pool/GridNodePool";
 import { GridHelp } from "../Util/GridHelp";
+import { BaseUI } from "./BaseUI";
+import ShopUI from "./ShopUI";
 
 const { ccclass, property } = cc._decorator;
 
@@ -25,21 +29,22 @@ export default class MainUI extends BaseUI
     {
         this.initMap();
         this.initAnimal();
+
     }
 
 
     initMap()
     {
         let nodePool = PoolManager.getInstance().getNodePool(GridNodePool) as GridNodePool;
-        let Container = ConfigManager.getInstance().getConfig(GridConfigContainer) as GridConfigContainer;
-        let data = Container.getGridConfigData();
+        let container = ConfigManager.getInstance().getConfig(GridConfigContainer) as GridConfigContainer;
+        let data = container.getGridConfigData();
 
         for (let index = data.length - 1; index >= 0; index--)
         {
             let node = nodePool.get();
 
             const element = data[index];
-            node.position = Container.getPosition(element.id);
+            node.position = container.getPosition(element.id);
 
             node.parent = this.mapLayer;
         }
@@ -47,11 +52,14 @@ export default class MainUI extends BaseUI
 
     initAnimal()
     {
+        let container = ConfigManager.getInstance().getConfig(AnimalConfigContainer) as AnimalConfigContainer;
+        let data = container.getAnimalConfigData();
         let nodePool = PoolManager.getInstance().getNodePool(AnimalNodePool) as AnimalNodePool;
 
-        for (let index = 10; index >= 0; index--)
+        for (let index = 2; index >= 0; index--)
         {
             let node = nodePool.get();
+            (node.getComponent(Animal) as Animal).init(data[index].name);
 
             node.position = GridHelp.getGridPosition(index);
 
@@ -93,4 +101,10 @@ export default class MainUI extends BaseUI
     //     this.goldLabel.string = this.obj.a.toString();
     // }
 
+
+    //------ 按钮点击事件 ------//
+    onBtnShop()
+    {
+        UIManager.getInstance().openUI(ShopUI, 10);
+    }
 }

@@ -1,52 +1,81 @@
 import { BaseUI } from "./BaseUI";
 import { ListenerManager } from "../Manager/ListenerManager";
+import { ListenerType } from "../Data/ListenerType";
+import { UIManager } from "../Manager/UIManager";
+import MainUI from "./MainUI";
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
+//TODO
 @ccclass
-export default class LoadingUI extends BaseUI {
+export default class LoadingUI extends BaseUI
+{
     protected static className = "LoadingUI";
+
+    @property(cc.ProgressBar)
+    progressBar: cc.ProgressBar = null;
+
+    curProgress: number = 0;
+    destProgress: number = 0;
+    timer: number = 0;
+    isLerping: boolean = false;
+    lerpDuration: number = 1;
+    isComplete: boolean = false;
+
+    onLoad()
+    {
+        ListenerManager.getInstance().on(ListenerType.UpdateLoadingProgress, this.updateProgress, this)
+    }
 
     start()
     {
-        ListenerManager.getInstance().on("a3",()=>{
-            cc.log("a3");
-        },this);
-        ListenerManager.getInstance().on("a4",()=>{
-            cc.log("a4");
-        },this);
+        this.progressBar.progress = 0;
     }
 
-    // update(dt: number)
-    // {
-    //     if(this.delay && this.openUI)
-    //     {
-    //         UIManager.getInstance().closeUI(LoadingUI);
-    //     }
-
-    //     if(this.fake)
-    //     {
-    //         this.fakeValue += dt * 0.6 / this.fakeTime;
-    //         this.updateProgress(this.fakeValue);
-    //     }
-    // }
-
-    // updateProgress(percent: number)
-    // {
-    //     if(this.progressBar.progress < percent)
-    //     {
-    //         this.progressBar.progress = percent;
-    //     }
-    //     let value = Math.round(this.progressBar.progress * 100);
-    //     this.progressLabel.string = value.toString() + '%';
-    //     let posX = this.progressBar.progress * 500 - 250;
-    //     this.dragonNode.x = posX;
-    // }
-
-
-
-    load(functionArray: Function[] )  
+    onGameStart()
     {
-        
+
     }
+
+    // called every frame, uncomment this function to activate update callback
+    update(dt: number)
+    {
+        if (this.isLerping === false || this.isComplete === true)
+        {
+            return;
+        }
+        this.timer += dt;
+        if (this.timer >= this.lerpDuration)
+        {
+            this.timer = this.lerpDuration;
+            this.isLerping = false;
+        }
+        this.progressBar.progress = cc.misc.lerp(this.curProgress, this.destProgress, this.timer / this.lerpDuration);
+
+        //头的位置
+        // let headPosX = this.progressBar.barSprite.node.width * this.progressBar.progress;
+        // this.head.x = headPosX;
+
+        if (this.progressBar.progress == 1)
+        {
+            this.isComplete = true;
+            this.completeCallback();
+        }
+    }
+
+    completeCallback()
+    {
+        UIManager.getInstance().openUI(MainUI,-1,()=>{
+            UIManager.getInstance().closeUI(LoadingUI);
+        });
+    }
+
+    updateProgress(progress: number)
+    {
+        this.curProgress = this.progressBar.progress;
+        this.destProgress = progress;
+        this.timer = 0;
+        this.isLerping = true;
+    }
+
 }
