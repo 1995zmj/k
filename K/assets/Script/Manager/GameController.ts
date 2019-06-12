@@ -35,13 +35,15 @@ export class GameController
     public initGame()
     {
         this.sumLoadedCount = 2;
-        ConfigManager.getInstance().loadAllConfig(()=>{
-            this.curLoadedCount ++;
-            ListenerManager.getInstance().emit(ListenerType.UpdateLoadingProgress,this.curLoadedCount/this.sumLoadedCount);
+        ConfigManager.getInstance().loadAllConfig(() =>
+        {
+            this.curLoadedCount++;
+            ListenerManager.getInstance().emit(ListenerType.UpdateLoadingProgress, this.curLoadedCount / this.sumLoadedCount);
         });
-        PoolManager.getInstance().loadAllNodePool(()=>{
-            this.curLoadedCount ++;
-            ListenerManager.getInstance().emit(ListenerType.UpdateLoadingProgress,this.curLoadedCount/this.sumLoadedCount);
+        PoolManager.getInstance().loadAllNodePool(() =>
+        {
+            this.curLoadedCount++;
+            ListenerManager.getInstance().emit(ListenerType.UpdateLoadingProgress, this.curLoadedCount / this.sumLoadedCount);
         });
         GameDataManager.getInstance().getGameData().initPlayerInfo();
         GameDataManager.getInstance().getGameData().initShopInfo();

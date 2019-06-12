@@ -5,18 +5,8 @@ export default class ListViewItem extends cc.Component
 {
     itemID: number = 0;
 
-    onLoad()
+    updateItem(i, j)
     {
-
-    }
-
-    start()
-    {
-
-    }
-
-    updateItem(i,j)
-    {
-        cc.log(i,j);
+        cc.log(i, j);
     }
 }
