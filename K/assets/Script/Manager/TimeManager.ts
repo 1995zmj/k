@@ -51,4 +51,14 @@ export class TimeManager
         clearInterval(id);
     }
 
+    getTimeByHMS(second:number): string 
+    {
+        var hour = parseInt((second / 3600).toString());
+        var minit = parseInt(((second - hour * 3600) / 60).toString());
+        var second = second - hour * 3600 - minit * 60;
+        let time = (hour < 10 ? ('0' + hour) : hour) + ':' + (minit < 10 ? ('0' + minit) : minit) + ':' + (second < 10 ? ('0' + second) : second);
+        return time
+    }
+
+
 }

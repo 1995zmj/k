@@ -21,8 +21,9 @@ export class GameDataManager
         return this.gameData;
     }
 
-    unserializeData(forceData)
+    init()
     {
-        // this.gameData.unserializeData(forceData);
+        this.gameData.initPlayerInfo();
+        this.gameData.initShopInfo();
     }
 }

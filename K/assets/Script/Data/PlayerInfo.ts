@@ -38,4 +38,15 @@ export class PlayerInfo
         this._closeBgm = value;
         GameDataManager.getInstance().getGameData().updatePlayerInfo("_closeBgm");
     }
+
+    private _saveEvenTime: number = 0;
+    public get saveEvenTime(): number
+    {
+        return this._saveEvenTime;
+    }
+    public set saveEvenTime(value: number)
+    {
+        this._saveEvenTime = value;
+        GameDataManager.getInstance().getGameData().updatePlayerInfo("_saveEvenTime");
+    }
 }

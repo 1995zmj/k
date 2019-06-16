@@ -45,7 +45,7 @@ export class GameController
             this.curLoadedCount++;
             ListenerManager.getInstance().emit(ListenerType.UpdateLoadingProgress, this.curLoadedCount / this.sumLoadedCount);
         });
-        GameDataManager.getInstance().getGameData().initPlayerInfo();
-        GameDataManager.getInstance().getGameData().initShopInfo();
+        GameDataManager.getInstance().init();
+        GameDataManager.getInstance().getGameData().calculateOfflineTime();
     }
 }

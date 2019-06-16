@@ -14,8 +14,6 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class Main extends cc.Component {
 
-    k:number = 0;
-
     onLoad()
     {
         
@@ -27,25 +25,6 @@ export default class Main extends cc.Component {
 
     start()
     {
-        this.k = 0;
+
     }
-
-    // send()
-    // {
-    // }
-
-    // destroyUI()
-    // {
-    //     UIManager.getInstance().hideUI(LoadingUI);
-    // }
-
-    // test
-
-    onBtnUpdateProgress()
-    {
-        this.k = this.k+0.4;
-        ListenerManager.getInstance().emit(ListenerType.UpdateLoadingProgress,this.k);
-    }
-
-
 }
