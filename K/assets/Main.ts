@@ -14,7 +14,6 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class Main extends cc.Component {
 
-    value: cc.ValueType = null
     onLoad()
     {
         
@@ -26,22 +25,6 @@ export default class Main extends cc.Component {
 
     start()
     {
-        // cc.misc.le
-        
+
     }
-
-    // send()
-    // {
-    // }
-
-    // destroyUI()
-    // {
-    //     UIManager.getInstance().hideUI(LoadingUI);
-    // }
-
-    // test
-
-    
-
-
 }
