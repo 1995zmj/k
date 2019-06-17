@@ -9,6 +9,9 @@ import { GridNodePool } from "../Pool/GridNodePool";
 import { GridHelp } from "../Util/GridHelp";
 import { BaseUI } from "./BaseUI";
 import ShopUI from "./ShopUI";
+import { GameDataManager } from "../Manager/GameDataManager";
+import { DragonInfo } from "../Data/WarPlatformInfo";
+import { ShopInfo } from "../Data/ShopInfo";
 
 const { ccclass, property } = cc._decorator;
 
@@ -25,11 +28,27 @@ export default class MainUI extends BaseUI
     @property(cc.Label)
     private goldLabel: cc.Label = null;
 
+    obj = {
+        a: 0,
+    }
+
+    onLoad()
+    {
+
+
+    }
+
     start()
     {
         this.initMap();
         this.initAnimal();
+        this.initWarPlatformInfo();
 
+    }
+
+    update()
+    {
+        this.goldLabel.string = this.obj.a.toString();
     }
 
 
@@ -65,6 +84,26 @@ export default class MainUI extends BaseUI
 
             node.parent = this.mapLayer;
         }
+    }
+
+    initWarPlatformInfo()
+    {
+        // let warPlatformInfo = GameDataManager.getInstance().getGameData().warPlatformInfo;
+
+        // let container = ConfigManager.getInstance().getConfig(AnimalConfigContainer) as AnimalConfigContainer;
+        // let data = container.getAnimalConfigData();
+        // let nodePool = PoolManager.getInstance().getNodePool(AnimalNodePool) as AnimalNodePool;
+
+        // cc.log(warPlatformInfo);
+        // let array = warPlatformInfo.unitInfoList;
+        // for (let index = 0; index < array.length; index++) {
+        //     const element = array[index];
+        //     if(element.unitInfo.type == "anim")
+        //     {
+
+        //     }
+        // }
+
     }
 
 

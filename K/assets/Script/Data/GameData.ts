@@ -1,12 +1,14 @@
 import { PlayerInfo } from "./PlayerInfo";
 import { DataStorageManager } from "../Manager/DataStorageManager";
 import { ShopInfo } from "./ShopInfo";
+import { WarPlatformInfo } from "./WarPlatformInfo";
 
 
 export class GameData
 {
     playerInfo: PlayerInfo = new PlayerInfo();
     shopInfo: ShopInfo = new ShopInfo();
+    warPlatformInfo: WarPlatformInfo = new WarPlatformInfo();
 
     initPlayerInfo()
     {
