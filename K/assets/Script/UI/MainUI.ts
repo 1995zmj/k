@@ -10,10 +10,10 @@ import { GridHelp } from "../Util/GridHelp";
 import { BaseUI } from "./BaseUI";
 import ShopUI from "./ShopUI";
 import { GameDataManager } from "../Manager/GameDataManager";
-import { DragonInfo } from "../Data/WarPlatformInfo";
 import { ShopInfo } from "../Data/ShopInfo";
 import { ListenerManager } from "../Manager/ListenerManager";
 import { ListenerType } from "../Data/ListenerType";
+import { AnimalUnitInfo } from "../Data/WarPlatformInfo";
 
 const { ccclass, property } = cc._decorator;
 
@@ -30,8 +30,9 @@ export default class MainUI extends BaseUI {
     private goldLabel: cc.Label = null;
 
     start() {
+        // playerInfo.aui.id =5;
         this.initMap();
-        this.initAnimal();
+        // this.initAnimal();
         this.initWarPlatformInfo();
 
     }
@@ -56,38 +57,38 @@ export default class MainUI extends BaseUI {
         }
     }
 
-    initAnimal() {
+    // initAnimal() {
+    //     let container = ConfigManager.getInstance().getConfig(AnimalConfigContainer) as AnimalConfigContainer;
+    //     let data = container.getAnimalConfigData();
+    //     let nodePool = PoolManager.getInstance().getNodePool(AnimalNodePool) as AnimalNodePool;
+
+    //     for (let index = 2; index >= 0; index--) {
+    //         let node = nodePool.get();
+    //         (node.getComponent(Animal) as Animal).init(data[index].name);
+
+    //         node.position = GridHelp.getGridPosition(index);
+
+    //         node.parent = this.mapLayer;
+    //     }
+    // }
+
+    initWarPlatformInfo()
+    {
+        let warPlatformInfo = GameDataManager.getInstance().getGameData().warPlatformInfo;
+
         let container = ConfigManager.getInstance().getConfig(AnimalConfigContainer) as AnimalConfigContainer;
         let data = container.getAnimalConfigData();
         let nodePool = PoolManager.getInstance().getNodePool(AnimalNodePool) as AnimalNodePool;
 
-        for (let index = 2; index >= 0; index--) {
-            let node = nodePool.get();
-            (node.getComponent(Animal) as Animal).init(data[index].name);
+        cc.log(warPlatformInfo);
+        let array = warPlatformInfo.unitInfoList;
+        for (let index = 0; index < array.length; index++) {
+            const element = array[index];
+            // if(typeof UnitInfo == UnitInfo)
+            // {
 
-            node.position = GridHelp.getGridPosition(index);
-
-            node.parent = this.mapLayer;
+            // }
         }
-    }
-
-    initWarPlatformInfo()
-    {
-        // let warPlatformInfo = GameDataManager.getInstance().getGameData().warPlatformInfo;
-
-        // let container = ConfigManager.getInstance().getConfig(AnimalConfigContainer) as AnimalConfigContainer;
-        // let data = container.getAnimalConfigData();
-        // let nodePool = PoolManager.getInstance().getNodePool(AnimalNodePool) as AnimalNodePool;
-
-        // cc.log(warPlatformInfo);
-        // let array = warPlatformInfo.unitInfoList;
-        // for (let index = 0; index < array.length; index++) {
-        //     const element = array[index];
-        //     if(element.unitInfo.type == "anim")
-        //     {
-
-        //     }
-        // }
 
     }
 

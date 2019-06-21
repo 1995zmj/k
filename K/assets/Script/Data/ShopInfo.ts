@@ -1,8 +1,8 @@
 import { GameDataManager } from "../Manager/GameDataManager";
 
-export class ShopProductInfo
+export class ShopUnitInfo
 {
-    public static className = "ShopProductInfo";
+    public static className = "ShopUnitInfo";
 
     public _buyCount: number = 0;
     public get buyCount(): number
@@ -12,6 +12,7 @@ export class ShopProductInfo
     public set buyCount(value: number)
     {
         this._buyCount = value;
+        GameDataManager.getInstance().getGameData().updateShopInfo("_shopUnitInfoList");
     }
 
     public _price: string = "";
@@ -28,22 +29,13 @@ export class ShopInfo
 {
     public static className = "ShopInfo";
 
-    public _shopProductList: ShopProductInfo[] = [];
-    public get shopProductList(): ShopProductInfo[]
-    {
-        return this._shopProductList;
-    }
-    public set shopProductList(value: ShopProductInfo[])
-    {
-        this._shopProductList = value;
-        GameDataManager.getInstance().getGameData().updateShopInfo("_shopProductList");
-    }
+    private _shopUnitInfoList: ShopUnitInfo[] = [];
 
-    getShopProduct(id): ShopProductInfo
+    getShopProduct(id): ShopUnitInfo
     {
-        if (!this.shopProductList[id])
-            this.shopProductList[id] = new ShopProductInfo;
+        if (!this._shopUnitInfoList[id])
+            this._shopUnitInfoList[id] = new ShopUnitInfo;
 
-        return this.shopProductList[id];
+        return this._shopUnitInfoList[id];
     }
 }

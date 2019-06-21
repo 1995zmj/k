@@ -16,8 +16,6 @@ export default class Main extends cc.Component {
 
     onLoad()
     {
-        
-
         UIManager.getInstance().openUI(LoadingUI,100,()=>{
             GameController.getInstance().initGame();
         })

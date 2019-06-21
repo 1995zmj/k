@@ -4,6 +4,7 @@ import { ConstValue } from "../Data/ConstValue";
 export class AnimalData
 {
     id: number;
+    price: number;
     name: string;
 }
 

@@ -27,23 +27,23 @@ export default class ListViewCtrl extends cc.Component
     @property
     bufferZone: number = 0; // when item is away from bufferZone, we relocate it
 
-    @property(cc.Label)
-    lblScrollEvent: cc.Label = null;
+    // @property(cc.Label)
+    // lblScrollEvent: cc.Label = null;
 
-    @property(cc.Button)
-    btnAddItem: cc.Button = null;
+    // @property(cc.Button)
+    // btnAddItem: cc.Button = null;
 
-    @property(cc.Button)
-    btnRemoveItem: cc.Button = null;
+    // @property(cc.Button)
+    // btnRemoveItem: cc.Button = null;
 
-    @property(cc.Button)
-    btnJumpToPosition: cc.Button = null;
+    // @property(cc.Button)
+    // btnJumpToPosition: cc.Button = null;
 
-    @property(cc.Label)
-    lblJumpPosition: cc.Label = null;
+    // @property(cc.Label)
+    // lblJumpPosition: cc.Label = null;
 
-    @property(cc.Label)
-    lblTotalItems: cc.Label = null;
+    // @property(cc.Label)
+    // lblTotalItems: cc.Label = null;
 
 
     items: cc.Node[] = [];
@@ -122,45 +122,45 @@ export default class ListViewCtrl extends cc.Component
         }
         // update lastContentPosY
         this.lastContentPosY = this.scrollView.content.y;
-        this.lblTotalItems.string = "Total Items: " + this.totalCount;
+        // this.lblTotalItems.string = "Total Items: " + this.totalCount;
     }
 
-    scrollEvent(sender, event)
-    {
-        switch (event)
-        {
-            case 0:
-                this.lblScrollEvent.string = "Scroll to Top";
-                break;
-            case 1:
-                this.lblScrollEvent.string = "Scroll to Bottom";
-                break;
-            case 2:
-                this.lblScrollEvent.string = "Scroll to Left";
-                break;
-            case 3:
-                this.lblScrollEvent.string = "Scroll to Right";
-                break;
-            case 4:
-                this.lblScrollEvent.string = "Scrolling";
-                break;
-            case 5:
-                this.lblScrollEvent.string = "Bounce Top";
-                break;
-            case 6:
-                this.lblScrollEvent.string = "Bounce bottom";
-                break;
-            case 7:
-                this.lblScrollEvent.string = "Bounce left";
-                break;
-            case 8:
-                this.lblScrollEvent.string = "Bounce right";
-                break;
-            case 9:
-                this.lblScrollEvent.string = "Auto scroll ended";
-                break;
-        }
-    }
+    // scrollEvent(sender, event)
+    // {
+    //     switch (event)
+    //     {
+    //         case 0:
+    //             this.lblScrollEvent.string = "Scroll to Top";
+    //             break;
+    //         case 1:
+    //             this.lblScrollEvent.string = "Scroll to Bottom";
+    //             break;
+    //         case 2:
+    //             this.lblScrollEvent.string = "Scroll to Left";
+    //             break;
+    //         case 3:
+    //             this.lblScrollEvent.string = "Scroll to Right";
+    //             break;
+    //         case 4:
+    //             this.lblScrollEvent.string = "Scrolling";
+    //             break;
+    //         case 5:
+    //             this.lblScrollEvent.string = "Bounce Top";
+    //             break;
+    //         case 6:
+    //             this.lblScrollEvent.string = "Bounce bottom";
+    //             break;
+    //         case 7:
+    //             this.lblScrollEvent.string = "Bounce left";
+    //             break;
+    //         case 8:
+    //             this.lblScrollEvent.string = "Bounce right";
+    //             break;
+    //         case 9:
+    //             this.lblScrollEvent.string = "Auto scroll ended";
+    //             break;
+    //     }
+    // }
 
     addItem()
     {

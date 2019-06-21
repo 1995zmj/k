@@ -2,20 +2,22 @@ import { ShopInfo } from "./ShopInfo";
 
 export class UnitInfo
 {
-    type:string = ""
+    public static className = "UnitInfo";
+     _unitInfoId = 0;
 }
 
-export class DragonInfo extends UnitInfo
+export class AnimalUnitInfo extends UnitInfo
 {
-    type = "Dragon"
-    private _dragonId: number = 0;
-    public get dragonId(): number
+    public static className = "AnimalUnitInfo";
+    private _id: number = 0;
+    public get id(): number
     {
-        return this._dragonId;
+        return this._id;
     }
-    public set dragonId(value: number)
+    public set id(value: number)
     {
-        this._dragonId = value;
+        this._id = value;
+        cc.log("aa");
     }
 
     private _isFromBuy: boolean = true;
@@ -29,17 +31,18 @@ export class DragonInfo extends UnitInfo
     }
 }
 
-export class BoxInfo extends UnitInfo
+export class BoxUnitInfo extends UnitInfo
 {
-    type = "Box"
-    private _boxId: number = 0;
-    public get boxId(): number
+    public static className = "BoxUnitInfo";
+    
+    private _id: number = 0;
+    public get id(): number
     {
-        return this._boxId;
+        return this._id;
     }
-    public set boxId(value: number)
+    public set id(value: number)
     {
-        this._boxId = value;
+        this._id = value;
     }
 
     private _isFromBuy: boolean = true;
@@ -55,6 +58,8 @@ export class BoxInfo extends UnitInfo
 
 export class PlatformUnitInfo
 {
+    public static className = "PlatformUnitInfo";
+
     public _index: number = 0;
     public get index(): number
     {

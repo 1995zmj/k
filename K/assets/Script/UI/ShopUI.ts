@@ -18,16 +18,6 @@ export default class ShopUI extends BaseUI {
         ListenerManager.getInstance().on(ListenerType.UpdateShopTimeUI, this.updateTimeLabel, this);
     }
 
-    // onEnable()
-    // {
-    //     this.calculagraph()
-    // }
-
-    // calculagraph()
-    // {
-    //     this.schedule(this.updateTimeLabel, 1);
-    // }
-
     updateTimeLabel() {
         let time = TimeManager.getInstance().getTimeByHMS(Math.floor(GameDataManager.getInstance().getGameData().evenTimeCD));
         this.timeLabel.string = time;

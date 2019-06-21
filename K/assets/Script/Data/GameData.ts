@@ -1,11 +1,12 @@
 import { PlayerInfo } from "./PlayerInfo";
 import { DataStorageManager } from "../Manager/DataStorageManager";
 import { ShopInfo } from "./ShopInfo";
-import { WarPlatformInfo } from "./WarPlatformInfo";
+import { WarPlatformInfo, AnimalUnitInfo } from "./WarPlatformInfo";
 import { ListenerManager } from "../Manager/ListenerManager";
 import { ListenerType } from "./ListenerType";
 import { TimeManager } from "../Manager/TimeManager";
 import { ConstValue } from "./ConstValue";
+import Animal from "../Object/Animal";
 
 
 export class GameData
@@ -60,5 +61,17 @@ export class GameData
 
         let interval = this.timestamp - this.playerInfo.saveEvenTime;
         this.evenTimeCD = interval % ConstValue.EVENT_TIME_CD;
+    }
+
+    buyAnimal(id:number)
+    {
+        this.shopInfo.getShopProduct(id).buyCount++;
+        cc.log(this.shopInfo);
+        let animal = new AnimalUnitInfo();
+        animal.id = id;
+        animal.isFromBuy = true;
+
+        // this.warPlatformInfo.
+
     }
 }

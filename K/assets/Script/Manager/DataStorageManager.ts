@@ -3,6 +3,7 @@ export class DataStorageManager
 {
     private static instance: DataStorageManager;
 
+
     static getInstance(): DataStorageManager
     {
         if (this.instance == null)
@@ -12,44 +13,109 @@ export class DataStorageManager
         return this.instance;
     }
 
+    data: object={};
+
     setObjData(objName: string, obj: object, propertyKey?: string)
     {
-        if (propertyKey)
-        {
-            if (obj.hasOwnProperty(propertyKey))
-            {
-                const element = obj[propertyKey];
-                this.setLocalData(objName + propertyKey, element);
-            }
-        } else
-        {
-            let object = obj;
-            for (const key in object)
-            {
-                if (object.hasOwnProperty(key))
-                {
-                    const element = object[key];
-                    this.setLocalData(objName + key, element);
-                }
-            }
-        }
+        this.setLocalData(objName, obj);
+
+        // if (propertyKey)
+        // {
+        //     if (obj.hasOwnProperty(propertyKey))
+        //     {
+        //         const element = obj[propertyKey];
+        //         this.setLocalData(objName + propertyKey, element);
+        //     }
+        // } 
+        // else
+        // {
+        //     let object = obj;
+        //     for (const key in object)
+        //     {
+        //         if (object.hasOwnProperty(key))
+        //         {
+        //             const element = object[key];
+        //             cc.log("k", key, element);
+
+        //             if (typeof element == "object")
+        //             {
+        //                 cc.log(element.constructor.name)
+
+        //                 if (element.constructor.name == "Array")
+        //                 {
+        //                     for (let index = 0; index < element.length; index++)
+        //                     {
+        //                         const tempElement = element[index];
+        //                         if (typeof element == "object")
+        //                             this.setObjData(objName + key + index.toString(), tempElement);
+        //                         else
+        //                             this.setLocalData(objName + key, element);
+
+        //                     }
+        //                 }
+        //                 else
+        //                 {
+        //                     this.setObjData(objName + key, element);
+        //                 }
+        //             } 
+        //             else
+        //             {
+        //                 this.setLocalData(objName + key, element);
+        //             }
+
+        //             this.setLocalData(objName + key, element);
+        //         }
+        //     }
+        // }
     };
 
-    initObjData(objName: string, obj: object)
+
+    initObjData(objName: string, obj: object,data)
     {
-        let object = obj;
-        for (const key in object)
-        {
-            if (object.hasOwnProperty(key))
-            {
-                const element = object[key];
-                let localData = this.getLocalData(objName+key,element);
-                object[key] = localData;
-            }
-        }
+        // let object = obj;
+        // for (const key in object)
+        // {
+        //     if (object.hasOwnProperty(key))
+        //     {
+        //         const element = object[key];
+
+        //         // 数组 对象
+        //         if (typeof element == "object")
+        //         {
+        //             // 数组
+        //             if (element.constructor.name == "Array")
+        //             {
+        //                 for (let index = 0; index < element.length; index++)
+        //                 {
+        //                     const tempElement = element[index];
+        //                     if (typeof element == "object"){
+        //                         this.initObjData(objName + key + index.toString(), tempElement,);
+        //                     }
+        //                     else
+        //                     {
+        //                         this.data[key] = this.getLocalData(objName + key, element);
+        //                         break;
+        //                     }
+        //                 }
+        //             }
+        //             // 对象
+        //             else
+        //             {
+        //                 this.initObjData(objName + key, element);
+        //             }
+        //         } 
+        //         else//简单类型
+        //         {
+        //             data[key] = this.getLocalData(objName+key,element);
+        //         }
+                
+        //     }
+        // }
+        
+        obj.init(this.getLocalData(objName,obj));
     };
 
-    setLocalData(key:string, data:any)
+    setLocalData(key: string, data: any)
     {
         let tempData = data;
         if (typeof data == 'object')

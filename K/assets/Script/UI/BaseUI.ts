@@ -33,7 +33,7 @@ export abstract class BaseUI extends cc.Component
     
     public static getUrl(): string
     {
-        cc.log(this.className);
+        // cc.log(this.className);
         return ConstValue.PREFAB_UI_DIR + this.className;
     }
 
