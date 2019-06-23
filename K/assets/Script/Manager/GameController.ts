@@ -59,7 +59,7 @@ export class GameController
         // gameData.playerInfo.auiArray.push(new UnitInfo());
         // GameDataManager.getInstance().getGameData().updatePlayerInfo();
         GameDataManager.getInstance().getGameData().initPlayerInfo();
-        // cc.log(gameData.playerInfo);
+        cc.log(gameData.playerInfo);
         
         
         // GameDataManager.getInstance().getGameData().calculateOfflineTime();

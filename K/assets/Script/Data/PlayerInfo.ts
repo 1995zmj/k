@@ -100,34 +100,42 @@ export class PlayerInfo
         GameDataManager.getInstance().getGameData().updatePlayerInfo("_aui");
     }
 
-    // init(data: object)
-    // {
-    //     cc.log(data);
-    //     for (const key in data) {
-    //         if (data.hasOwnProperty(key)) {
-    //             const element = data[key];
-    //             cc.log(element,key,this[key]);
-    //             if(key == "_auiArray")
-    //             {
-    //                 this[key] = this.init_auiArray(data[key]);
-    //             }
-    //             else
-    //             {
-    //                 this[key] = element;
-    //             }
-    //         }
-    //     }
-    // }
+    initData(data: object)
+    {
+
+        // data = Object.assign({
+        //     title: 'Foo',
+        //     body: 'Bar',
+        //     buttonText: 'Baz',
+        //     cancellable: true
+        //   }, data);
+        cc.log(data);
+        cc.log(this);
+        for (const key in data) {
+            if (this.hasOwnProperty(key) && data.hasOwnProperty(key)) {
+                let element = data[key];
+                if(key == "_auiArray")
+                {
+                    this.init_auiArray(element);
+                }
+                else
+                {
+                    this[key] = element;
+                }
+            }
+        }
+    }
 
 
-    // init_auiArray(data:object): object[]
-    // {
-    //     for (const key in data) {
-    //         if (data.hasOwnProperty(key)) {
-    //             const element = object[key];
-                
-    //         }
-    //     }
-    //     return {};
-    // }
+    init_auiArray(data:[])
+    {
+        cc.log("zmj",data);
+        for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+                const element = data[key];
+                let unitInfo = new UnitInfo(data[key]);
+                this.auiArray.push(unitInfo);
+            }
+        }
+    }
 }

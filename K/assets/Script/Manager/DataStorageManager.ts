@@ -1,4 +1,9 @@
-//只支持对象的第一层级的key
+export interface info
+{
+    initData(data: object);
+}
+
+
 export class DataStorageManager
 {
     private static instance: DataStorageManager;
@@ -70,7 +75,7 @@ export class DataStorageManager
     };
 
 
-    initObjData(objName: string, obj: object,data)
+    initObjData(objName: string, obj: info)
     {
         // let object = obj;
         // for (const key in object)
@@ -112,7 +117,7 @@ export class DataStorageManager
         //     }
         // }
         
-        obj.init(this.getLocalData(objName,obj));
+        obj.initData(this.getLocalData(objName,obj));
     };
 
     setLocalData(key: string, data: any)
