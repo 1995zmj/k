@@ -44,24 +44,12 @@ export class GameController
         });
         PoolManager.getInstance().loadAllNodePool(() =>
         {
-            // this.curLoadedCount++;
-            // ListenerManager.getInstance().emit(ListenerType.UpdateLoadingProgress, this.curLoadedCount / this.sumLoadedCount);
+            this.curLoadedCount++;
+            ListenerManager.getInstance().emit(ListenerType.UpdateLoadingProgress, this.curLoadedCount / this.sumLoadedCount);
         });
-        let gameData = GameDataManager.getInstance().getGameData();
 
-        // gameData.playerInfo.testArray = [2,2,2];
-        // let t = new UnitInfo();
-        // cc.log(t);  
-        // let k = new UnitInfo();
-        // k._unitInfoId = 1;
-        // gameData.playerInfo.auiArray.push(new UnitInfo());
-        // gameData.playerInfo.auiArray.push(k);
-        // gameData.playerInfo.auiArray.push(new UnitInfo());
-        // GameDataManager.getInstance().getGameData().updatePlayerInfo();
-        GameDataManager.getInstance().getGameData().initPlayerInfo();
-        cc.log(gameData.playerInfo);
+        cc.director.getCollisionManager().enabled = true;
+        cc.director.getCollisionManager().enabledDebugDraw = true;
         
-        
-        // GameDataManager.getInstance().getGameData().calculateOfflineTime();
     }
 }

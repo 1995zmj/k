@@ -13,7 +13,6 @@ import { GameDataManager } from "../Manager/GameDataManager";
 import { ShopInfo } from "../Data/ShopInfo";
 import { ListenerManager } from "../Manager/ListenerManager";
 import { ListenerType } from "../Data/ListenerType";
-import { AnimalUnitInfo } from "../Data/WarPlatformInfo";
 
 const { ccclass, property } = cc._decorator;
 
@@ -30,10 +29,9 @@ export default class MainUI extends BaseUI {
     private goldLabel: cc.Label = null;
 
     start() {
-        // playerInfo.aui.id =5;
-        this.initMap();
+        // this.initMap();
         // this.initAnimal();
-        this.initWarPlatformInfo();
+        // this.initWarPlatformInfo();
 
     }
 
@@ -42,20 +40,20 @@ export default class MainUI extends BaseUI {
     }
 
 
-    initMap() {
-        let nodePool = PoolManager.getInstance().getNodePool(GridNodePool) as GridNodePool;
-        let container = ConfigManager.getInstance().getConfig(GridConfigContainer) as GridConfigContainer;
-        let data = container.getGridConfigData();
+    // initMap() {
+    //     let nodePool = PoolManager.getInstance().getNodePool(GridNodePool) as GridNodePool;
+    //     let container = ConfigManager.getInstance().getConfig(GridConfigContainer) as GridConfigContainer;
+    //     let data = container.getGridConfigData();
 
-        for (let index = data.length - 1; index >= 0; index--) {
-            let node = nodePool.get();
+    //     for (let index = data.length - 1; index >= 0; index--) {
+    //         let node = nodePool.get();
 
-            const element = data[index];
-            node.position = container.getPosition(element.id);
+    //         const element = data[index];
+    //         node.position = container.getPosition(element.id);
 
-            node.parent = this.mapLayer;
-        }
-    }
+    //         node.parent = this.mapLayer;
+    //     }
+    // }
 
     // initAnimal() {
     //     let container = ConfigManager.getInstance().getConfig(AnimalConfigContainer) as AnimalConfigContainer;
@@ -72,25 +70,25 @@ export default class MainUI extends BaseUI {
     //     }
     // }
 
-    initWarPlatformInfo()
-    {
-        let warPlatformInfo = GameDataManager.getInstance().getGameData().warPlatformInfo;
+    // initWarPlatformInfo()
+    // {
+    //     let warPlatformInfo = GameDataManager.getInstance().getGameData().warPlatformInfo;
 
-        let container = ConfigManager.getInstance().getConfig(AnimalConfigContainer) as AnimalConfigContainer;
-        let data = container.getAnimalConfigData();
-        let nodePool = PoolManager.getInstance().getNodePool(AnimalNodePool) as AnimalNodePool;
+    //     let container = ConfigManager.getInstance().getConfig(AnimalConfigContainer) as AnimalConfigContainer;
+    //     let data = container.getAnimalConfigData();
+    //     let nodePool = PoolManager.getInstance().getNodePool(AnimalNodePool) as AnimalNodePool;
 
-        cc.log(warPlatformInfo);
-        let array = warPlatformInfo.unitInfoList;
-        for (let index = 0; index < array.length; index++) {
-            const element = array[index];
-            // if(typeof UnitInfo == UnitInfo)
-            // {
+    //     cc.log(warPlatformInfo);
+    //     let array = warPlatformInfo.unitInfoList;
+    //     for (let index = 0; index < array.length; index++) {
+    //         const element = array[index];
+    //         // if(typeof UnitInfo == UnitInfo)
+    //         // {
 
-            // }
-        }
+    //         // }
+    //     }
 
-    }
+    // }
 
 
     // playChangeCoinEffect(present: number, target: number, label: cc.Label, callback: Function, time?: number)

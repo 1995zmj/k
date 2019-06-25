@@ -1,5 +1,4 @@
 import { GameDataManager } from "../Manager/GameDataManager";
-import { AnimalUnitInfo, UnitInfo } from "./WarPlatformInfo";
 
 //数组要自己更新
 
@@ -77,29 +76,6 @@ export class PlayerInfo
         GameDataManager.getInstance().getGameData().updatePlayerInfo("_testArray");
     }
 
-
-    private _auiArray: UnitInfo[] = new Array<UnitInfo>();
-    public get auiArray(): UnitInfo[]
-    {
-        return this._auiArray;
-    }
-    public set auiArray(value: UnitInfo[])
-    {
-        this._auiArray = value;
-        GameDataManager.getInstance().getGameData().updatePlayerInfo("_aui");
-    }
-
-    private _aui: UnitInfo = new UnitInfo();
-    public get aui(): UnitInfo
-    {
-        return this._aui;
-    }
-    public set aui(value: UnitInfo)
-    {
-        this._aui = value;
-        GameDataManager.getInstance().getGameData().updatePlayerInfo("_aui");
-    }
-
     initData(data: object)
     {
 
@@ -116,7 +92,7 @@ export class PlayerInfo
                 let element = data[key];
                 if(key == "_auiArray")
                 {
-                    this.init_auiArray(element);
+                    // this.init_auiArray(element);
                 }
                 else
                 {
@@ -127,15 +103,15 @@ export class PlayerInfo
     }
 
 
-    init_auiArray(data:[])
-    {
-        cc.log("zmj",data);
-        for (const key in data) {
-            if (data.hasOwnProperty(key)) {
-                const element = data[key];
-                let unitInfo = new UnitInfo(data[key]);
-                this.auiArray.push(unitInfo);
-            }
-        }
-    }
+    // init_auiArray(data:[])
+    // {
+    //     cc.log("zmj",data);
+    //     for (const key in data) {
+    //         if (data.hasOwnProperty(key)) {
+    //             const element = data[key];
+    //             let unitInfo = new UnitInfo(data[key]);
+    //             this.auiArray.push(unitInfo);
+    //         }
+    //     }
+    // }
 }
