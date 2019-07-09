@@ -1,18 +1,18 @@
-import { PlayerInfo } from "./PlayerInfo";
 import { DataStorageManager } from "../Manager/DataStorageManager";
-import { ShopInfo } from "./ShopInfo";
 // import { WarPlatformInfo, AnimalUnitInfo } from "./WarPlatformInfo";
 import { ListenerManager } from "../Manager/ListenerManager";
 import { ListenerType } from "./ListenerType";
 import { TimeManager } from "../Manager/TimeManager";
 import { ConstValue } from "./ConstValue";
 import Animal from "../Object/Animal";
+import { PlayerInfo } from "./Info/PlayerInfo";
+import { ShopInfo } from "./Info/ShopInfo";
 
 
 export class GameData
 {
     playerInfo: PlayerInfo = new PlayerInfo();
-    shopInfo: ShopInfo = new ShopInfo();
+    shopInfo: ShopInfo = new ShopInfo("shopInfo");
     // warPlatformInfo: WarPlatformInfo = new WarPlatformInfo();
 
     private timestamp: number = 0;
@@ -29,12 +29,12 @@ export class GameData
     }
 
     initPlayerInfo() {
-        DataStorageManager.getInstance().initObjData(PlayerInfo.className, this.playerInfo);
+        // DataStorageManager.getInstance().initObjData(PlayerInfo.className, this.playerInfo);
     }
 
-    // initShopInfo() {
-    //     DataStorageManager.getInstance().initObjData(ShopInfo.className, this.shopInfo);
-    // }
+    initShopInfo() {
+        this.shopInfo.initData(DataStorageManager.getInstance().getDataFromLocalData(this.shopInfo.storageKey, this.shopInfo));
+    }
 
     //没有key 更新全部的数据，有key更新特定的
     updatePlayerInfo(key?: string) {
@@ -42,7 +42,7 @@ export class GameData
     }
 
     updateShopInfo(key?: string) {
-        DataStorageManager.getInstance().setObjData(ShopInfo.className, this.shopInfo, key);
+        DataStorageManager.getInstance().setObjData(this.shopInfo.storageKey, this.shopInfo, key);
     }
 
     updateEventTime(dt) {

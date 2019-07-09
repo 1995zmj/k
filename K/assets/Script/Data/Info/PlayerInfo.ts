@@ -1,4 +1,5 @@
-import { GameDataManager } from "../Manager/GameDataManager";
+import { GameDataManager } from "../../Manager/GameDataManager";
+
 
 //数组要自己更新
 
@@ -12,13 +13,12 @@ export class PlayerInfo
 {
     public static className = "PlayerInfo";
 
-    constructor(){
-        // this._auiArray = new A()[50];
-        // for (var i = 0; i < 50; i++){
-        //     var a: A = new A();
-        //     this._arrayA.push(a);
-        // }
+    storageKey: string = null;
+
+    constructor(storageKey?:string){
+        this.storageKey = storageKey;    
     }
+
 
     private _firstLogin: boolean = true;
     public get firstLogin(): boolean
@@ -28,7 +28,7 @@ export class PlayerInfo
     public set firstLogin(value: boolean)
     {
         this._firstLogin = value;
-        GameDataManager.getInstance().getGameData().updatePlayerInfo("_firstLogin");
+        // GameDataManager.getInstance().getGameData().updatePlayerInfo("_firstLogin");
     }
 
     private _closeAudio: boolean = false;
@@ -39,7 +39,7 @@ export class PlayerInfo
     public set closeAudio(value: boolean)
     {
         this._closeAudio = value;
-        GameDataManager.getInstance().getGameData().updatePlayerInfo("_closeAudio");
+        // GameDataManager.getInstance().getGameData().updatePlayerInfo("_closeAudio");
     }
 
     private _closeBgm: boolean = false;
@@ -50,7 +50,7 @@ export class PlayerInfo
     public set closeBgm(value: boolean)
     {
         this._closeBgm = value;
-        GameDataManager.getInstance().getGameData().updatePlayerInfo("_closeBgm");
+        // GameDataManager.getInstance().getGameData().updatePlayerInfo("_closeBgm");
     }
 
     private _saveEvenTime: number = 0;
@@ -61,7 +61,7 @@ export class PlayerInfo
     public set saveEvenTime(value: number)
     {
         this._saveEvenTime = value;
-        GameDataManager.getInstance().getGameData().updatePlayerInfo("_saveEvenTime");
+        // GameDataManager.getInstance().getGameData().updatePlayerInfo("_saveEvenTime");
     }
 
 
@@ -73,7 +73,7 @@ export class PlayerInfo
     public set testArray(value: number[])
     {
         this._testArray = value;
-        GameDataManager.getInstance().getGameData().updatePlayerInfo("_testArray");
+        // GameDataManager.getInstance().getGameData().updatePlayerInfo("_testArray");
     }
 
     initData(data: object)
@@ -101,17 +101,4 @@ export class PlayerInfo
             }
         }
     }
-
-
-    // init_auiArray(data:[])
-    // {
-    //     cc.log("zmj",data);
-    //     for (const key in data) {
-    //         if (data.hasOwnProperty(key)) {
-    //             const element = data[key];
-    //             let unitInfo = new UnitInfo(data[key]);
-    //             this.auiArray.push(unitInfo);
-    //         }
-    //     }
-    // }
 }

@@ -14,5 +14,23 @@ export class ConstValue {
 
     public static readonly EVENT_TIME_CD = 30;
 
+
+
+
+    /*------ 层级 ------*/
+    public static readonly UNIT = 1;
+
+    public static readonly MAIN_UI_ZINDEX = 0 * ConstValue.UNIT;
+
+    public static readonly DEFAULT_UI_ZINDEX = 10 * ConstValue.UNIT;
+
+    public static readonly SHOP_UI_ZINDEX = 20 * ConstValue.UNIT;
+
+    public static readonly LAYER_UI_ZINDEX = 50 * ConstValue.UNIT;
+
+    public static readonly LOADING_UI_ZINDEX = 100 * ConstValue.UNIT;
+
+
+
     
 }

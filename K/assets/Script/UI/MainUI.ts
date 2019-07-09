@@ -13,11 +13,14 @@ import { GameDataManager } from "../Manager/GameDataManager";
 import { ShopInfo } from "../Data/ShopInfo";
 import { ListenerManager } from "../Manager/ListenerManager";
 import { ListenerType } from "../Data/ListenerType";
+import LayerUI from "./LayerUI";
+import { ConstValue } from "../Data/ConstValue";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class MainUI extends BaseUI {
+export default class MainUI extends BaseUI
+{
     protected static className = "MainUI";
 
     @property(cc.Node)
@@ -28,14 +31,15 @@ export default class MainUI extends BaseUI {
     @property(cc.Label)
     private goldLabel: cc.Label = null;
 
-    start() {
+    start()
+    {
         // this.initMap();
         // this.initAnimal();
         // this.initWarPlatformInfo();
-
     }
 
-    update(dt) {
+    update(dt)
+    {
         ListenerManager.getInstance().emit(ListenerType.LoopUpdate, dt);
     }
 
@@ -126,7 +130,30 @@ export default class MainUI extends BaseUI {
 
 
     //------ 按钮点击事件 ------//
-    onBtnShop() {
-        UIManager.getInstance().openUI(ShopUI, 10);
+    onBtnShop()
+    {
+        UIManager.getInstance().openUI(LayerUI, ConstValue.LAYER_UI_ZINDEX);
+    }
+
+    onBtnLayer1()
+    {
+        UIManager.getInstance().showUI(ShopUI);
+    }
+
+    onBtnLayer2()
+    {
+        UIManager.getInstance().showUI(ShopUI);
+    }
+
+    onBtnSet()
+    {
+        GameDataManager.getInstance().getGameData().shopInfo.player.closeAudio = true;
+        GameDataManager.getInstance().getGameData().updateShopInfo();
+    }
+
+    onBtnGet()
+    {
+        GameDataManager.getInstance().getGameData().initShopInfo();
+        cc.log(GameDataManager.getInstance().getGameData().shopInfo);
     }
 }

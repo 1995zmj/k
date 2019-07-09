@@ -18,6 +18,16 @@ export default class ShopUI extends BaseUI {
         ListenerManager.getInstance().on(ListenerType.UpdateShopTimeUI, this.updateTimeLabel, this);
     }
 
+    onEnable()
+    {
+
+    }
+
+    onDisable()
+    {
+
+    }
+
     updateTimeLabel() {
         let time = TimeManager.getInstance().getTimeByHMS(Math.floor(GameDataManager.getInstance().getGameData().evenTimeCD));
         this.timeLabel.string = time;
@@ -25,7 +35,12 @@ export default class ShopUI extends BaseUI {
 
     //------ 按钮点击事件 ------//
     onBtnClose() {
-        UIManager.getInstance().closeUI(ShopUI);
+        UIManager.getInstance().hideUI(ShopUI);
+    }
+
+    onBtnchangeZIndex()
+    {
+        this.node.zIndex = 70;
     }
 
 

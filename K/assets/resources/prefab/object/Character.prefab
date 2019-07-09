@@ -380,8 +380,9 @@
       "__id__": 1
     },
     "_enabled": true,
-    "label": null,
-    "text": "hello",
+    "animation": {
+      "__id__": 6
+    },
     "_id": ""
   },
   {

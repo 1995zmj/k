@@ -1,4 +1,5 @@
 import { BaseUI, UIClass, EUIType } from "../UI/BaseUI";
+import { ConstValue } from "../Data/ConstValue";
 
 export class UIManager
 {
@@ -49,6 +50,7 @@ export class UIManager
                 let uiNode: cc.Node = cc.instantiate(prefab);
                 uiNode.parent = this.uiRoot;
                 if (zOrder) { uiNode.zIndex = zOrder; }
+                uiNode.zIndex = zOrder ? zOrder : ConstValue.DEFAULT_UI_ZINDEX;
                 let ui = uiNode.getComponent(uiClass) as BaseUI;
                 if(!ui)
                 {
@@ -88,7 +90,7 @@ export class UIManager
         }
         else
         {
-            this.openUI(uiClass, 0, (ui)=>{
+            this.openUI(uiClass, ConstValue.DEFAULT_UI_ZINDEX, (ui)=>{
                 ui.onShow();
                 callback&&callback(ui);
             });
