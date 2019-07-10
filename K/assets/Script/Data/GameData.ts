@@ -7,71 +7,98 @@ import { ConstValue } from "./ConstValue";
 import Animal from "../Object/Animal";
 import { PlayerInfo } from "./Info/PlayerInfo";
 import { ShopInfo } from "./Info/ShopInfo";
+import { WarPlatformInfo, AnimalUnitInfo, UnitInfo } from "./Info/WarPlatformInfo";
 
 
 export class GameData
 {
     playerInfo: PlayerInfo = new PlayerInfo();
-    shopInfo: ShopInfo = new ShopInfo("shopInfo");
-    // warPlatformInfo: WarPlatformInfo = new WarPlatformInfo();
+    shopInfo: ShopInfo = new ShopInfo();
+    warPlatformInfo: WarPlatformInfo = new WarPlatformInfo();
 
     private timestamp: number = 0;
     public evenTimeCD: number = 0;
 
 
-    constructor() {
-
+    constructor()
+    {
         ListenerManager.getInstance().on(ListenerType.LoopUpdate, this.onUpdate, this);
     }
 
-    onUpdate(dt) {
-        this.updateEventTime(dt);
+    onUpdate(dt)
+    {
+        // this.updateTime(dt);
+        // this.updateEventTime(dt);
     }
 
-    initPlayerInfo() {
+    initPlayerInfo()
+    {
         // DataStorageManager.getInstance().initObjData(PlayerInfo.className, this.playerInfo);
     }
 
-    initShopInfo() {
-        this.shopInfo.initData(DataStorageManager.getInstance().getDataFromLocalData(this.shopInfo.storageKey, this.shopInfo));
+    initShopInfo()
+    {
+        // this.shopInfo.initData(DataStorageManager.getInstance().getDataFromLocalData(this.shopInfo.storageKey, this.shopInfo));
+    }
+
+    initWarPlatformInfo()
+    {
+        this.warPlatformInfo.init();
+        // this.shopInfo.initData(DataStorageManager.getInstance().getDataFromLocalData(this.shopInfo.storageKey, this.shopInfo));
     }
 
     //没有key 更新全部的数据，有key更新特定的
-    updatePlayerInfo(key?: string) {
-        DataStorageManager.getInstance().setObjData(PlayerInfo.className, this.playerInfo, key);
+    updatePlayerInfo(key?: string)
+    {
+        // DataStorageManager.getInstance().setObjData(PlayerInfo.className, this.playerInfo, key);
     }
 
-    updateShopInfo(key?: string) {
-        DataStorageManager.getInstance().setObjData(this.shopInfo.storageKey, this.shopInfo, key);
+    updateShopInfo(key?: string)
+    {
+        // DataStorageManager.getInstance().setObjData(this.shopInfo.storageKey, this.shopInfo, key);
     }
 
-    updateEventTime(dt) {
+    updateTime(dt)
+    {
 
-        if (this.evenTimeCD <= 0) {
-            this.evenTimeCD = 30;
-            // this.playerInfo.saveEvenTime = TimeManager.getInstance().getCurrentTime();
-        }else{
-            this.evenTimeCD -= dt;
-            ListenerManager.getInstance().emit(ListenerType.UpdateShopTimeUI);
-        }
     }
 
-    calculateOfflineTime() {
-        this.timestamp = TimeManager.getInstance().getCurrentTime();
+    // updateEventTime(dt) {
 
-        let interval = this.timestamp - this.playerInfo.saveEvenTime;
-        this.evenTimeCD = interval % ConstValue.EVENT_TIME_CD;
-    }
+    //     if (this.evenTimeCD <= 0) {
+    //         this.evenTimeCD = 30;
+    //         // this.playerInfo.saveEvenTime = TimeManager.getInstance().getCurrentTime();
+    //     }else{
+    //         this.evenTimeCD -= dt;
+    //         ListenerManager.getInstance().emit(ListenerType.UpdateShopTimeUI);
+    //     }
+    // }
 
-    buyAnimal(id:number)
+    // calculateOfflineTime() {
+    //     this.timestamp = TimeManager.getInstance().getCurrentTime();
+
+    //     let interval = this.timestamp - this.playerInfo.saveEvenTime;
+    //     this.evenTimeCD = interval % ConstValue.EVENT_TIME_CD;
+    // }
+
+    buyAnimal(id: number)
     {
         // this.shopInfo.getShopProduct(id).buyCount++;
         // cc.log(this.shopInfo);
-        // let animal = new AnimalUnitInfo();
-        // animal.id = id;
-        // animal.isFromBuy = true;
-
-        // this.warPlatformInfo.
+        let animal = new AnimalUnitInfo();
+        animal.id = id;
+        animal.isFromBuy = true;
 
     }
+
+    // warPlatformInfoAddUnit(unit: UnitInfo)
+    // {
+    //     let array = this.warPlatformInfo.unitInfoList
+    //     for (let index = 0; index < array.length; index++) {
+    //         const element = array[index];
+    //         if()
+    //     }
+    // }
+
+
 }

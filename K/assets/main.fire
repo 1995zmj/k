@@ -95,8 +95,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1334,
-      "height": 750
+      "width": 750,
+      "height": 1334
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -105,8 +105,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 667,
-      "y": 375,
+      "x": 375,
+      "y": 667,
       "z": 0
     },
     "_scale": {
@@ -951,8 +951,8 @@
     "_enabled": true,
     "_designResolution": {
       "__type__": "cc.Size",
-      "width": 1334,
-      "height": 750
+      "width": 750,
+      "height": 1334
     },
     "_fitWidth": true,
     "_fitHeight": false,

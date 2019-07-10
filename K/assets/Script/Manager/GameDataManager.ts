@@ -21,9 +21,10 @@ export class GameDataManager
         return this.gameData;
     }
 
-    // init()
-    // {
-    //     this.gameData.initPlayerInfo();
-    //     this.gameData.initShopInfo();
-    // }
+    init()
+    {
+        this.gameData.initPlayerInfo();
+        this.gameData.initShopInfo();
+        this.gameData.initWarPlatformInfo();
+    }
 }

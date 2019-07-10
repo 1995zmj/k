@@ -144,9 +144,7 @@
       "__id__": 2
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "46f76881-27ed-4b63-9173-61a5b47ce100"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -184,7 +182,7 @@
     },
     "_enabled": true,
     "animalSpriteAtlas": {
-      "__uuid__": "06c87028-119d-4899-b4cf-4b1ef7e0392c"
+      "__uuid__": "413428b3-3c22-4561-bfbe-6734a7103aa7"
     },
     "animalSprite": {
       "__id__": 3

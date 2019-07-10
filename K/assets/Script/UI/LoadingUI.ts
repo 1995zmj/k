@@ -3,6 +3,7 @@ import { ListenerManager } from "../Manager/ListenerManager";
 import { ListenerType } from "../Data/ListenerType";
 import { UIManager } from "../Manager/UIManager";
 import MainUI from "./MainUI";
+import { ConstValue } from "../Data/ConstValue";
 
 const { ccclass, property } = cc._decorator;
 
@@ -65,7 +66,7 @@ export default class LoadingUI extends BaseUI
 
     completeCallback()
     {
-        UIManager.getInstance().openUI(MainUI,-1,()=>{
+        UIManager.getInstance().openUI(MainUI,ConstValue.MAIN_UI_ZINDEX,()=>{
             UIManager.getInstance().closeUI(LoadingUI);
         });
     }

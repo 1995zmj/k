@@ -1,18 +1,9 @@
 import { GameDataManager } from "../../Manager/GameDataManager";
 
-
-//数组要自己更新
-
-export interface testD
-{
-    id:number;
-    name:string;
-}
-
 export class PlayerInfo
 {
     public static className = "PlayerInfo";
-
+    
     storageKey: string = null;
 
     constructor(storageKey?:string){
@@ -28,7 +19,6 @@ export class PlayerInfo
     public set firstLogin(value: boolean)
     {
         this._firstLogin = value;
-        // GameDataManager.getInstance().getGameData().updatePlayerInfo("_firstLogin");
     }
 
     private _closeAudio: boolean = false;
@@ -39,7 +29,6 @@ export class PlayerInfo
     public set closeAudio(value: boolean)
     {
         this._closeAudio = value;
-        // GameDataManager.getInstance().getGameData().updatePlayerInfo("_closeAudio");
     }
 
     private _closeBgm: boolean = false;
@@ -50,7 +39,6 @@ export class PlayerInfo
     public set closeBgm(value: boolean)
     {
         this._closeBgm = value;
-        // GameDataManager.getInstance().getGameData().updatePlayerInfo("_closeBgm");
     }
 
     private _saveEvenTime: number = 0;
@@ -61,7 +49,6 @@ export class PlayerInfo
     public set saveEvenTime(value: number)
     {
         this._saveEvenTime = value;
-        // GameDataManager.getInstance().getGameData().updatePlayerInfo("_saveEvenTime");
     }
 
 
@@ -73,7 +60,6 @@ export class PlayerInfo
     public set testArray(value: number[])
     {
         this._testArray = value;
-        // GameDataManager.getInstance().getGameData().updatePlayerInfo("_testArray");
     }
 
     initData(data: object)

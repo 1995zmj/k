@@ -17,21 +17,4 @@ export abstract class BaseNodePool
 	{
 		this.mTag = value;
     }
-
-    // public static getUrl(): string
-    // {
-    //     cc.log(this.className);
-    //     return ConstValue.PREFAB_UI_DIR + this.className;
-    // }
-
-    // get()
-    // {
-        
-    // }
-
-    // put(node: cc.Node)
-    // {
-
-    // }
-
 }

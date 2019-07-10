@@ -22,7 +22,6 @@ export class ShopUnitInfo
     public set buyCount(value: number)
     {
         this._buyCount = value;
-        GameDataManager.getInstance().getGameData().updateShopInfo("_shopUnitInfoList");
     }
 
     public _price: string = "";
@@ -51,7 +50,6 @@ export class ShopInfo
 
     constructor(storageKey?:string){
         this.storageKey = storageKey;    
-        this.player = new PlayerInfo(storageKey + "_playerinfo");
     }
 
     private _shopUnitInfoList: ShopUnitInfo[] = [];
@@ -64,38 +62,21 @@ export class ShopInfo
         this._shopUnitInfoList = value;
     }
 
-    private _player: PlayerInfo = null;
-    public get player(): PlayerInfo
-    {
-        return this._player;
-    }
-    public set player(value: PlayerInfo)
-    {
-        this._player = value;
-    }
-
     initData(data: object)
     {
-        cc.log("data",data);
         for (const key in data) {
             if (this.hasOwnProperty(key) && data.hasOwnProperty(key)) {
                 let element = data[key];
                 if(key == "_shopUnitInfoList")
                 {
                     this.initShopUnitInfoList(element);
-                }else(key == "_playerinfo")
-                {
-                    this.player.initData(element);
                 }
             }
         }
-        cc.log("init",this);
-
     }
 
     initShopUnitInfoList(data:Array<object>)
     {
-        cc.log("zmj",data);
         for (const key in data) {
             if (data.hasOwnProperty(key)) {
                 let unitInfo = new ShopUnitInfo(data[key]);

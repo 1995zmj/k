@@ -48,22 +48,6 @@ export class GameController
             ListenerManager.getInstance().emit(ListenerType.UpdateLoadingProgress, this.curLoadedCount / this.sumLoadedCount);
         });
 
-
-        // GameDataManager.getInstance().getGameData().shopInfo.shopUnitInfoList[0] = new ShopUnitInfo();
-        // GameDataManager.getInstance().getGameData().shopInfo.shopUnitInfoList[0].price = "0";
-
-        // GameDataManager.getInstance().getGameData().shopInfo.shopUnitInfoList[1] = new ShopUnitInfo();
-        // GameDataManager.getInstance().getGameData().shopInfo.shopUnitInfoList[1].price = "1";
-        // GameDataManager.getInstance().getGameData().shopInfo.player.closeAudio = true;
-        // GameDataManager.getInstance().getGameData().updateShopInfo();
-
-        
-
-
-
-
-        cc.director.getCollisionManager().enabled = true;
-        cc.director.getCollisionManager().enabledDebugDraw = true;
-        
+        GameDataManager.getInstance().init();
     }
 }
