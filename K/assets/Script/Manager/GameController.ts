@@ -41,6 +41,7 @@ export class GameController
         {
             this.curLoadedCount++;
             ListenerManager.getInstance().emit(ListenerType.UpdateLoadingProgress, this.curLoadedCount / this.sumLoadedCount);
+            GameDataManager.getInstance().init();
         });
         PoolManager.getInstance().loadAllNodePool(() =>
         {
@@ -48,6 +49,5 @@ export class GameController
             ListenerManager.getInstance().emit(ListenerType.UpdateLoadingProgress, this.curLoadedCount / this.sumLoadedCount);
         });
 
-        GameDataManager.getInstance().init();
     }
 }

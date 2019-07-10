@@ -89,16 +89,6 @@ export class GameData
         animal.id = id;
         animal.isFromBuy = true;
 
+        this.warPlatformInfo.addUnitInfo(animal);
     }
-
-    // warPlatformInfoAddUnit(unit: UnitInfo)
-    // {
-    //     let array = this.warPlatformInfo.unitInfoList
-    //     for (let index = 0; index < array.length; index++) {
-    //         const element = array[index];
-    //         if()
-    //     }
-    // }
-
-
 }

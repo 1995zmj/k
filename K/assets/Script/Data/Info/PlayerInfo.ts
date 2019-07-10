@@ -3,13 +3,12 @@ import { GameDataManager } from "../../Manager/GameDataManager";
 export class PlayerInfo
 {
     public static className = "PlayerInfo";
-    
-    storageKey: string = null;
 
     constructor(storageKey?:string){
         this.storageKey = storageKey;    
     }
 
+    storageKey: string = null;
 
     private _firstLogin: boolean = true;
     public get firstLogin(): boolean
@@ -49,17 +48,6 @@ export class PlayerInfo
     public set saveEvenTime(value: number)
     {
         this._saveEvenTime = value;
-    }
-
-
-    private _testArray: number[] = [];
-    public get testArray(): number[]
-    {
-        return this._testArray;
-    }
-    public set testArray(value: number[])
-    {
-        this._testArray = value;
     }
 
     initData(data: object)

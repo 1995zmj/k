@@ -71,6 +71,7 @@ export default class MainUI extends BaseUI
         cc.log(array.length);
         for (let index = 0; index < array.length; index++) {
             const element = array[index];
+
             //Animal
             if(element.unitInfo.unitInfoType == EUnitInfoType.ANIMAL)
             {
