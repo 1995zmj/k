@@ -83,7 +83,7 @@ export class PlatformUnitInfo
 {
     public static className = "PlatformUnitInfo";
 
-    public _index: number = 0;
+    private _index: number = 0;
     public get index(): number
     {
         return this._index;
@@ -93,7 +93,7 @@ export class PlatformUnitInfo
         this._index = value;
     }
 
-    public _unitInfo: UnitInfo = new UnitInfo;
+    private _unitInfo: UnitInfo = new UnitInfo;
     public get unitInfo(): UnitInfo
     {
         return this._unitInfo;
@@ -108,8 +108,9 @@ export class WarPlatformInfo
 {
     public static className = "WarPlatformInfo";
 
-    constructor(storageKey?:string){
-        this.storageKey = storageKey;    
+    constructor(storageKey?: string)
+    {
+        this.storageKey = storageKey;
     }
 
     storageKey: string = null;
@@ -121,22 +122,26 @@ export class WarPlatformInfo
     {
         let container = ConfigManager.getInstance().getConfig(GridConfigContainer) as GridConfigContainer;
         let data = container.getGridConfigData();
-        for (let index = 0; index < data.length; index++) {
-            this.unitInfoList.push(new PlatformUnitInfo());
+        for (let index = 0; index < data.length; index++)
+        {
+            let platformUnitInfo = new PlatformUnitInfo();
+            platformUnitInfo.index = index;
+            this.unitInfoList.push(platformUnitInfo);
         }
         cc.log(this.unitInfoList);
     }
 
-    addUnitInfo(unitInfo:UnitInfo)
+    getIdelePlatformUnitInfoId(): number
     {
         let array = this.unitInfoList;
-        for (let index = 0; index < array.length; index++) {
+        for (let index = 0; index < array.length; index++)
+        {
             const element = array[index];
-            if(element.unitInfo.unitInfoType == EUnitInfoType.NONE)
+            if (element.unitInfo.unitInfoType == EUnitInfoType.NONE)
             {
-                this.unitInfoList[index].unitInfo = unitInfo;
-                break;
+                return index;
             }
         }
+        return null;
     }
 }

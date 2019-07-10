@@ -14,7 +14,7 @@ import { ListenerManager } from "../Manager/ListenerManager";
 import { ListenerType } from "../Data/ListenerType";
 import LayerUI from "./LayerUI";
 import { ConstValue } from "../Data/ConstValue";
-import { EUnitInfoType } from "../Data/Info/WarPlatformInfo";
+import { EUnitInfoType, PlatformUnitInfo, AnimalUnitInfo } from "../Data/Info/WarPlatformInfo";
 
 const { ccclass, property } = cc._decorator;
 
@@ -30,6 +30,12 @@ export default class MainUI extends BaseUI
 
     @property(cc.Label)
     private goldLabel: cc.Label = null;
+
+    onLoad()
+    {
+        ListenerManager.getInstance().on(ListenerType.OnGetAnimal, this.onGetAnimal,this);
+
+    }
 
     start()
     {
@@ -122,6 +128,20 @@ export default class MainUI extends BaseUI
     // {
     //     this.goldLabel.string = this.obj.a.toString();
     // }
+    //------ 监听回调 ------//
+    onGetAnimal(platformUnitInfo: PlatformUnitInfo)
+    {
+        cc.log(platformUnitInfo);
+        let animalContainer = ConfigManager.getInstance().getConfig(AnimalConfigContainer) as AnimalConfigContainer;
+        let animalData = animalContainer.getAnimalConfigData();
+        let animalNodePool = PoolManager.getInstance().getNodePool(AnimalNodePool) as AnimalNodePool;
+        let node = animalNodePool.get();
+        let index = platformUnitInfo.index;
+        let id = (platformUnitInfo.unitInfo as AnimalUnitInfo).id;
+        (node.getComponent(Animal) as Animal).init(animalData[id].name);
+        node.position = GridHelp.getGridPosition(index);
+        node.parent = this.animalLayer;
+    }
 
 
     //------ 按钮点击事件 ------//
@@ -132,7 +152,7 @@ export default class MainUI extends BaseUI
 
     onBtnBuy()
     {
-
+        GameDataManager.getInstance().getGameData().buyAnimal(2);
     }
 
     onBtnLayer1()

@@ -7,7 +7,8 @@ import { ConstValue } from "./ConstValue";
 import Animal from "../Object/Animal";
 import { PlayerInfo } from "./Info/PlayerInfo";
 import { ShopInfo } from "./Info/ShopInfo";
-import { WarPlatformInfo, AnimalUnitInfo, UnitInfo } from "./Info/WarPlatformInfo";
+import { WarPlatformInfo, AnimalUnitInfo, UnitInfo, EUnitInfoType } from "./Info/WarPlatformInfo";
+import { EUIType } from "../UI/BaseUI";
 
 
 export class GameData
@@ -86,9 +87,16 @@ export class GameData
         // this.shopInfo.getShopProduct(id).buyCount++;
         // cc.log(this.shopInfo);
         let animal = new AnimalUnitInfo();
+        animal.unitInfoType = EUnitInfoType.ANIMAL
         animal.id = id;
         animal.isFromBuy = true;
+        let index = this.warPlatformInfo.getIdelePlatformUnitInfoId();
+        if (index != null)
+        {
+            this.warPlatformInfo.unitInfoList[index].unitInfo = animal;
+            cc.log(index);
+            ListenerManager.getInstance().emit(ListenerType.OnGetAnimal, this.warPlatformInfo.unitInfoList[index]);
+        }
 
-        this.warPlatformInfo.addUnitInfo(animal);
     }
 }

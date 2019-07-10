@@ -7,4 +7,10 @@ export class ListenerType
 
     public static readonly UpdateShopTimeUI = "UpdateShopTimeUI";
 
+
+    // MainUI
+    public static readonly OnGetAnimal = "OnGetAnimal";
+
+    
+
 }
