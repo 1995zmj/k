@@ -30,22 +30,24 @@ export default class MainUI extends BaseUI
 
     @property(cc.Label)
     private goldLabel: cc.Label = null;
-
+    @property(cc.SpriteFrame)
+    private spriteFrame: cc.SpriteFrame = null;
     onLoad()
     {
-        ListenerManager.getInstance().on(ListenerType.OnGetAnimal, this.onGetAnimal,this);
-
+        // ListenerManager.getInstance().on(ListenerType.OnGetAnimal, this.onGetAnimal,this);
+        cc.dynamicAtlasManager.maxFrameSize = 1024;cc.dynamicAtlasManager.showDebug(true);
+        cc.dynamicAtlasManager.insertSpriteFrame(this.spriteFrame);
     }
 
-    start()
-    {
-        this.initWarPlatformInfo();
-    }
+    // start()
+    // {
+    //     this.initWarPlatformInfo();
+    // }
 
-    update(dt)
-    {
-        ListenerManager.getInstance().emit(ListenerType.LoopUpdate, dt);
-    }
+    // update(dt)
+    // {
+    //     ListenerManager.getInstance().emit(ListenerType.LoopUpdate, dt);
+    // }
 
 
     initMap() {

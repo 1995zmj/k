@@ -113,10 +113,9 @@ export class WarPlatformInfo
         this.storageKey = storageKey;
     }
 
-    storageKey: string = null;
+    public storageKey: string = null;
 
-
-    unitInfoList: PlatformUnitInfo[] = [];
+    public unitInfoList: PlatformUnitInfo[] = [];
 
     init()
     {
@@ -129,6 +128,18 @@ export class WarPlatformInfo
             this.unitInfoList.push(platformUnitInfo);
         }
         cc.log(this.unitInfoList);
+    }
+
+    initData(data: object)
+    {
+        cc.log(data);
+        for (const key in data)
+        {
+            if (this.hasOwnProperty(key) && data.hasOwnProperty(key))
+            {
+                let element = data[key];
+            }
+        }
     }
 
     getIdelePlatformUnitInfoId(): number

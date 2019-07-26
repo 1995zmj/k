@@ -14,8 +14,8 @@ import { EUIType } from "../UI/BaseUI";
 export class GameData
 {
     playerInfo: PlayerInfo = new PlayerInfo();
-    shopInfo: ShopInfo = new ShopInfo();
-    warPlatformInfo: WarPlatformInfo = new WarPlatformInfo();
+    shopInfo: ShopInfo = new ShopInfo("ShopInfo");
+    warPlatformInfo: WarPlatformInfo = new WarPlatformInfo("WarPlatformInfo");
 
     private timestamp: number = 0;
     public evenTimeCD: number = 0;
@@ -39,24 +39,24 @@ export class GameData
 
     initShopInfo()
     {
-        // this.shopInfo.initData(DataStorageManager.getInstance().getDataFromLocalData(this.shopInfo.storageKey, this.shopInfo));
+        this.shopInfo.initData(DataStorageManager.getInstance().getDataFromLocalData(this.shopInfo.storageKey, this.shopInfo));
     }
 
     initWarPlatformInfo()
     {
         this.warPlatformInfo.init();
-        // this.shopInfo.initData(DataStorageManager.getInstance().getDataFromLocalData(this.shopInfo.storageKey, this.shopInfo));
+        // this.warPlatformInfo.initData(DataStorageManager.getInstance().getDataFromLocalData(this.warPlatformInfo.storageKey, this.warPlatformInfo));
     }
 
     //没有key 更新全部的数据，有key更新特定的
     updatePlayerInfo(key?: string)
     {
-        // DataStorageManager.getInstance().setObjData(PlayerInfo.className, this.playerInfo, key);
+        DataStorageManager.getInstance().setObjData(this.warPlatformInfo.storageKey, this.warPlatformInfo, key);
     }
 
     updateShopInfo(key?: string)
     {
-        // DataStorageManager.getInstance().setObjData(this.shopInfo.storageKey, this.shopInfo, key);
+        DataStorageManager.getInstance().setObjData(this.shopInfo.storageKey, this.shopInfo, key);
     }
 
     updateTime(dt)

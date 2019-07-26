@@ -1,14 +1,13 @@
-import { GameDataManager } from "../../Manager/GameDataManager";
-
 export class PlayerInfo
 {
     public static className = "PlayerInfo";
 
-    constructor(storageKey?:string){
-        this.storageKey = storageKey;    
+    constructor(storageKey?: string)
+    {
+        this.storageKey = storageKey;
     }
 
-    storageKey: string = null;
+    public storageKey: string = null;
 
     private _firstLogin: boolean = true;
     public get firstLogin(): boolean
@@ -40,15 +39,15 @@ export class PlayerInfo
         this._closeBgm = value;
     }
 
-    private _saveEvenTime: number = 0;
-    public get saveEvenTime(): number
-    {
-        return this._saveEvenTime;
-    }
-    public set saveEvenTime(value: number)
-    {
-        this._saveEvenTime = value;
-    }
+    // private _saveEvenTime: number = 0;
+    // public get saveEvenTime(): number
+    // {
+    //     return this._saveEvenTime;
+    // }
+    // public set saveEvenTime(value: number)
+    // {
+    //     this._saveEvenTime = value;
+    // }
 
     initData(data: object)
     {
@@ -61,17 +60,12 @@ export class PlayerInfo
         //   }, data);
         cc.log(data);
         cc.log(this);
-        for (const key in data) {
-            if (this.hasOwnProperty(key) && data.hasOwnProperty(key)) {
+        for (const key in data)
+        {
+            if (this.hasOwnProperty(key) && data.hasOwnProperty(key))
+            {
                 let element = data[key];
-                if(key == "_auiArray")
-                {
-                    // this.init_auiArray(element);
-                }
-                else
-                {
-                    this[key] = element;
-                }
+                this[key] = element;
             }
         }
     }
