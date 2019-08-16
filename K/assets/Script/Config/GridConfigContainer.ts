@@ -1,5 +1,6 @@
-import { BaseConfigContainer } from "./BaseConfigContainer";
-import { ConstValue } from "../Data/ConstValue";
+import { BaseConfigContainer } from "../../GameplayerFrame/Script/Config/BaseConfigContainer";
+import { ConstValue } from "../../GameplayerFrame/Script/Data/ConstValue";
+
 
 export class GridData
 {

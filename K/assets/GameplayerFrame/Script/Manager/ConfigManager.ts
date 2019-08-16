@@ -1,6 +1,7 @@
 import { BaseConfigContainer, ConfigContainerClass } from "../Config/BaseConfigContainer";
-import { AnimalConfigContainer } from "../Config/AnimalConfigContainer";
-import { GridConfigContainer } from "../Config/GridConfigContainer";
+import { AnimalConfigContainer } from "../../../Script/Config/AnimalConfigContainer";
+import { GridConfigContainer } from "../../../Script/Config/GridConfigContainer";
+
 
 
 export class ConfigManager

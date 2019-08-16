@@ -1,9 +1,5 @@
-import { BaseUI } from "./BaseUI";
-import { ListenerManager } from "../Manager/ListenerManager";
-import { ListenerType } from "../Data/ListenerType";
-import { UIManager } from "../Manager/UIManager";
-import MainUI from "./MainUI";
-import { ConstValue } from "../Data/ConstValue";
+import { BaseUI } from "../../GameplayerFrame/Script/UI/BaseUI";
+
 
 const { ccclass, property } = cc._decorator;
 
@@ -23,10 +19,10 @@ export default class LoadingUI extends BaseUI
     lerpDuration: number = 1;
     isComplete: boolean = false;
 
-    onLoad()
-    {
-        ListenerManager.getInstance().on(ListenerType.UpdateLoadingProgress, this.updateProgress, this)
-    }
+    // onLoad()
+    // {
+    //     ListenerManager.getInstance().on(ListenerType.UpdateLoadingProgress, this.updateProgress, this)
+    // }
 
     start()
     {
@@ -66,9 +62,9 @@ export default class LoadingUI extends BaseUI
 
     completeCallback()
     {
-        UIManager.getInstance().openUI(MainUI,ConstValue.MAIN_UI_ZINDEX,()=>{
-            UIManager.getInstance().closeUI(LoadingUI);
-        });
+        // UIManager.getInstance().openUI(MainUI,ConstValue.MAIN_UI_ZINDEX,()=>{
+        //     UIManager.getInstance().closeUI(LoadingUI);
+        // });
     }
 
     updateProgress(progress: number)

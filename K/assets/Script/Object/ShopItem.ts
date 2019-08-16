@@ -1,8 +1,9 @@
 import ListViewItem from "../Util/ListView/ListViewItem";
-import { ConfigManager } from "../Manager/ConfigManager";
 import Animal from "./Animal";
 import { AnimalData, AnimalConfigContainer } from "../Config/AnimalConfigContainer";
-import { GameDataManager } from "../Manager/GameDataManager";
+import { ConfigManager } from "../../GameplayerFrame/Script/Manager/ConfigManager";
+import { GameDataManager } from "../../GameplayerFrame/Script/Manager/GameDataManager";
+
 
 const { ccclass, property } = cc._decorator;
 

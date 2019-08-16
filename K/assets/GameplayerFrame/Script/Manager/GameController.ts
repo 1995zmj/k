@@ -3,8 +3,6 @@ import { PoolManager } from "./PoolManager";
 import { GameDataManager } from "./GameDataManager";
 import { ListenerManager } from "./ListenerManager";
 import { ListenerType } from "../Data/ListenerType";
-import { DataStorageManager } from "./DataStorageManager";
-import { ShopUnitInfo } from "../Data/Info/ShopInfo";
 
 export enum GameState
 {
@@ -41,7 +39,6 @@ export class GameController
         {
             this.curLoadedCount++;
             ListenerManager.getInstance().emit(ListenerType.UpdateLoadingProgress, this.curLoadedCount / this.sumLoadedCount);
-            GameDataManager.getInstance().init();
         });
         PoolManager.getInstance().loadAllNodePool(() =>
         {

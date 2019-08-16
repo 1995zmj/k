@@ -1,5 +1,4 @@
-import { GameDataManager } from "../../Manager/GameDataManager";
-import { PlayerInfo } from "./PlayerInfo";
+
 
 export class ShopUnitInfo
 {

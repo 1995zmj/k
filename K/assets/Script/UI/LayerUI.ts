@@ -1,4 +1,4 @@
-import { BaseUI } from "./BaseUI";
+import { BaseUI } from "../../GameplayerFrame/Script/UI/BaseUI";
 
 const {ccclass, property} = cc._decorator;
 

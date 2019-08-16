@@ -1,8 +1,8 @@
 import { BaseConfigContainer, ConfigContainerClass } from "../Config/BaseConfigContainer";
 import { BaseNodePool, NodePoolClass } from "../Pool/BaseNodePool";
-import { GridHelp } from "../Util/GridHelp";
-import { GridNodePool } from "../Pool/GridNodePool";
-import { AnimalNodePool } from "../Pool/AnimalNodePool";
+import { GridNodePool } from "../../../Script/Pool/GridNodePool";
+import { AnimalNodePool } from "../../../Script/Pool/AnimalNodePool";
+
 
 
 export class PoolManager

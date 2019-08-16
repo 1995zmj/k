@@ -1,5 +1,5 @@
 import { GridConfigContainer } from "../Config/GridConfigContainer";
-import { ConfigManager } from "../Manager/ConfigManager";
+import { ConfigManager } from "../../GameplayerFrame/Script/Manager/ConfigManager";
 
 export class GridHelp
 {

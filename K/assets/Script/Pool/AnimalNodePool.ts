@@ -1,6 +1,7 @@
-import { ConstValue } from "../Data/ConstValue";
-import { BaseNodePool } from "./BaseNodePool";
+
 import Animal from "../Object/Animal";
+import { BaseNodePool } from "../../GameplayerFrame/Script/Pool/BaseNodePool";
+import { ConstValue } from "../../GameplayerFrame/Script/Data/ConstValue";
 
 export class AnimalNodePool extends BaseNodePool
 {
@@ -42,6 +43,7 @@ export class AnimalNodePool extends BaseNodePool
         if(this.animalNodePool.size() > 0){
             node = this.animalNodePool.get();
         }else{
+            cc.log("不够  添加");
             node = cc.instantiate(this.animalPrefab);
         }
         return node;

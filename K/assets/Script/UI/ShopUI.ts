@@ -1,9 +1,10 @@
-import { BaseUI } from "./BaseUI";
-import { UIManager } from "../Manager/UIManager";
-import { TimeManager } from "../Manager/TimeManager";
-import { ListenerManager } from "../Manager/ListenerManager";
-import { ListenerType } from "../Data/ListenerType";
-import { GameDataManager } from "../Manager/GameDataManager";
+import { BaseUI } from "../../GameplayerFrame/Script/UI/BaseUI";
+import { ListenerManager } from "../../GameplayerFrame/Script/Manager/ListenerManager";
+import { ListenerType } from "../../GameplayerFrame/Script/Data/ListenerType";
+import { GameDataManager } from "../../GameplayerFrame/Script/Manager/GameDataManager";
+import { TimeManager } from "../../GameplayerFrame/Script/Manager/TimeManager";
+import { UIManager } from "../../GameplayerFrame/Script/Manager/UIManager";
+
 
 const { ccclass, property } = cc._decorator;
 

@@ -1,14 +1,12 @@
-import { DataStorageManager } from "../Manager/DataStorageManager";
 // import { WarPlatformInfo, AnimalUnitInfo } from "./WarPlatformInfo";
-import { ListenerManager } from "../Manager/ListenerManager";
-import { ListenerType } from "./ListenerType";
-import { TimeManager } from "../Manager/TimeManager";
-import { ConstValue } from "./ConstValue";
+
 import Animal from "../Object/Animal";
 import { PlayerInfo } from "./Info/PlayerInfo";
 import { ShopInfo } from "./Info/ShopInfo";
 import { WarPlatformInfo, AnimalUnitInfo, UnitInfo, EUnitInfoType } from "./Info/WarPlatformInfo";
-import { EUIType } from "../UI/BaseUI";
+import { ListenerType } from "../../GameplayerFrame/Script/Data/ListenerType";
+import { ListenerManager } from "../../GameplayerFrame/Script/Manager/ListenerManager";
+import { DataStorageManager } from "../../GameplayerFrame/Script/Manager/DataStorageManager";
 
 
 export class GameData

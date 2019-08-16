@@ -1,13 +1,7 @@
-import { ConfigManager } from "./Script/Manager/ConfigManager";
-import { GameDataManager } from "./Script/Manager/GameDataManager";
-import { PoolManager } from "./Script/Manager/PoolManager";
-import { UIManager } from "./Script/Manager/UIManager";
-import MainUI from "./Script/UI/MainUI";
-import ShopUI from "./Script/UI/ShopUI";
+import { UIManager } from "./GameplayerFrame/Script/Manager/UIManager";
 import LoadingUI from "./Script/UI/LoadingUI";
-import { ListenerManager } from "./Script/Manager/ListenerManager";
-import { ListenerType } from "./Script/Data/ListenerType";
-import { GameController } from "./Script/Manager/GameController";
+import { ConstValue } from "./GameplayerFrame/Script/Data/ConstValue";
+import { GameController } from "./GameplayerFrame/Script/Manager/GameController";
 
 const {ccclass, property} = cc._decorator;
 
@@ -16,7 +10,7 @@ export default class Main extends cc.Component {
 
     onLoad()
     {
-        UIManager.getInstance().openUI(LoadingUI,100,()=>{
+        UIManager.getInstance().openUI(LoadingUI,ConstValue.LOADING_UI_ZINDEX,()=>{
             GameController.getInstance().initGame();
         })
     }

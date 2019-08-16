@@ -9,10 +9,10 @@ export class WXUtil {
 
 
     share(title:string, imageUrl:string, callback:Function) {
-        wx.shareAppMessage({
-            title: title,
-            // imageUrl: imageUrl,
-        });
+        // wx.shareAppMessage({
+        //     title: title,
+        //     // imageUrl: imageUrl,
+        // });
     }
 
 
