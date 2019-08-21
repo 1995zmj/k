@@ -1,5 +1,4 @@
-import { GameData } from "../Data/GameData";
-import { ConfigManager } from "./ConfigManager";
+import { GameData } from "../../../Script/Data/GameData";
 
 export class GameDataManager
 {
@@ -9,7 +8,7 @@ export class GameDataManager
 
     static getInstance(): GameDataManager
     {
-        if(this.instance == null)
+        if (this.instance == null)
         {
             this.instance = new GameDataManager();
         }
@@ -21,10 +20,11 @@ export class GameDataManager
         return this.gameData;
     }
 
-    init()
+    initData(callback: Function)
     {
         this.gameData.initPlayerInfo();
         this.gameData.initShopInfo();
         this.gameData.initWarPlatformInfo();
+        callback();
     }
 }

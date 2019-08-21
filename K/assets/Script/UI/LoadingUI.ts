@@ -1,9 +1,10 @@
 import { BaseUI } from "../../GameplayerFrame/Script/UI/BaseUI";
-
+import { ListenerManager } from "../../GameplayerFrame/Script/Manager/ListenerManager";
+import { ListenerType } from "../../GameplayerFrame/Script/Data/ListenerType";
+import { UIManager } from "../../GameplayerFrame/Script/Manager/UIManager";
 
 const { ccclass, property } = cc._decorator;
 
-//TODO
 @ccclass
 export default class LoadingUI extends BaseUI
 {
@@ -19,19 +20,14 @@ export default class LoadingUI extends BaseUI
     lerpDuration: number = 1;
     isComplete: boolean = false;
 
-    // onLoad()
-    // {
-    //     ListenerManager.getInstance().on(ListenerType.UpdateLoadingProgress, this.updateProgress, this)
-    // }
+    onLoad()
+    {
+        ListenerManager.getInstance().on(ListenerType.UpdateLoadingProgress, this.updateProgress, this)
+    }
 
     start()
     {
         this.progressBar.progress = 0;
-    }
-
-    onGameStart()
-    {
-
     }
 
     // called every frame, uncomment this function to activate update callback
@@ -62,9 +58,7 @@ export default class LoadingUI extends BaseUI
 
     completeCallback()
     {
-        // UIManager.getInstance().openUI(MainUI,ConstValue.MAIN_UI_ZINDEX,()=>{
-        //     UIManager.getInstance().closeUI(LoadingUI);
-        // });
+        UIManager.getInstance().closeUI(LoadingUI);
     }
 
     updateProgress(progress: number)
@@ -74,5 +68,4 @@ export default class LoadingUI extends BaseUI
         this.timer = 0;
         this.isLerping = true;
     }
-
 }

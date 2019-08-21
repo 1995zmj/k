@@ -7,7 +7,6 @@ export class GridData
     id: number;
     x: number;
     y: number;
-    
 }
 
 export class GridConfigContainer extends BaseConfigContainer

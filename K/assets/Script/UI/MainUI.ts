@@ -15,6 +15,8 @@ import { ConfigManager } from "../../GameplayerFrame/Script/Manager/ConfigManage
 import { GameDataManager } from "../../GameplayerFrame/Script/Manager/GameDataManager";
 import { UIManager } from "../../GameplayerFrame/Script/Manager/UIManager";
 import { ConstValue } from "../../GameplayerFrame/Script/Data/ConstValue";
+import { ListenerManager } from "../../GameplayerFrame/Script/Manager/ListenerManager";
+import { ListenerType } from "../../GameplayerFrame/Script/Data/ListenerType";
 
 const { ccclass, property } = cc._decorator;
 
@@ -24,7 +26,7 @@ export default class MainUI extends BaseUI
     protected static className = "MainUI";
 
     @property(cc.Node)
-    private mapLayer: cc.Node = null;
+    private gridLayer: cc.Node = null;
     @property(cc.Node)
     private animalLayer: cc.Node = null;
 
@@ -32,71 +34,50 @@ export default class MainUI extends BaseUI
     private goldLabel: cc.Label = null;
     @property(cc.SpriteFrame)
     private spriteFrame: cc.SpriteFrame = null;
+
     onLoad()
     {
-        // ListenerManager.getInstance().on(ListenerType.OnGetAnimal, this.onGetAnimal,this);
-        cc.dynamicAtlasManager.maxFrameSize = 1024; cc.dynamicAtlasManager.showDebug(true);
-        cc.dynamicAtlasManager.insertSpriteFrame(this.spriteFrame);
+        ListenerManager.getInstance().on(ListenerType.OnGetAnimal, this.onGetAnimal,this);
     }
 
-    // start()
-    // {
-    //     this.initWarPlatformInfo();
-    // }
+    start()
+    {
+        this.initWarPlatformInfo();
+    }
 
     // update(dt)
     // {
     //     ListenerManager.getInstance().emit(ListenerType.LoopUpdate, dt);
     // }
 
-
-    initMap()
-    {
-        let nodePool = PoolManager.getInstance().getNodePool(GridNodePool) as GridNodePool;
-        let container = ConfigManager.getInstance().getConfig(GridConfigContainer) as GridConfigContainer;
-        let data = container.getGridConfigData();
-
-        for (let index = data.length - 1; index >= 0; index--)
-        {
-            let node = nodePool.get();
-
-            const element = data[index];
-            node.position = container.getPosition(element.id);
-
-            node.parent = this.mapLayer;
-        }
-    }
-
-
     initWarPlatformInfo()
     {
+        let animalContainer = ConfigManager.getInstance().getConfig(AnimalConfigContainer) as AnimalConfigContainer;
+        let animalData = animalContainer.getAnimalConfigData();
 
-        // let animalContainer = ConfigManager.getInstance().getConfig(AnimalConfigContainer) as AnimalConfigContainer;
-        // let animalData = animalContainer.getAnimalConfigData();
-        // // let animalNodePool = PoolManager.getInstance().getNodePool(AnimalNodePool) as AnimalNodePool;
-        // let gridNodePool = PoolManager.getInstance().getNodePool(GridNodePool) as GridNodePool;
+        let animalNodePool = PoolManager.getInstance().getNodePool(AnimalNodePool) as AnimalNodePool;
+        let gridNodePool = PoolManager.getInstance().getNodePool(GridNodePool) as GridNodePool;
 
-        // let warPlatformInfo = GameDataManager.getInstance().getGameData().warPlatformInfo;
-        // let array = warPlatformInfo.unitInfoList;
-        // cc.log(array.length);
-        // for (let index = 0; index < array.length; index++) {
-        //     const element = array[index];
+        let warPlatformInfo = GameDataManager.getInstance().getGameData().warPlatformInfo;
+        let array = warPlatformInfo.PlatformUnitInfoList;
 
-        //     //Animal
-        //     if(element.unitInfo.unitInfoType == EUnitInfoType.ANIMAL)
-        //     {
-        //         let node = animalNodePool.get();
-        //         (node.getComponent(Animal) as Animal).init(animalData[index].name);
-        //         node.position = GridHelp.getGridPosition(index);
-        //         node.parent = this.animalLayer;
-        //     }
+        for (let index = 0; index < array.length; index++)
+        {
+            const element = array[index];
 
-        //     //Grid
-        //     let node = gridNodePool.get();
-        //     node.position = GridHelp.getGridPosition(index);
-        //     node.parent = this.mapLayer;
-        // }
+            //Animal
+            if (element.unitInfo.unitInfoType == EUnitInfoType.ANIMAL)
+            {
+                let node = animalNodePool.get();
+                (node.getComponent(Animal) as Animal).init(element);
+                node.parent = this.animalLayer;
+            }
 
+            //Grid
+            let node = gridNodePool.get();
+            node.position = GridHelp.getGridPosition(index);
+            node.parent = this.gridLayer;
+        }
     }
 
 
@@ -132,24 +113,20 @@ export default class MainUI extends BaseUI
     // {
     //     this.goldLabel.string = this.obj.a.toString();
     // }
+
     //------ 监听回调 ------//
-    // onGetAnimal(platformUnitInfo: PlatformUnitInfo)
-    // {
-    //     cc.log(platformUnitInfo);
-    //     let animalContainer = ConfigManager.getInstance().getConfig(AnimalConfigContainer) as AnimalConfigContainer;
-    //     let animalData = animalContainer.getAnimalConfigData();
-    //     let animalNodePool = PoolManager.getInstance().getNodePool(AnimalNodePool) as AnimalNodePool;
-    //     let node = animalNodePool.get();
-    //     let index = platformUnitInfo.index;
-    //     let id = (platformUnitInfo.unitInfo as AnimalUnitInfo).id;
-    //     (node.getComponent(Animal) as Animal).init(animalData[id].name);
-    //     node.position = GridHelp.getGridPosition(index);
-    //     node.parent = this.animalLayer;
-    // }
+    onGetAnimal(platformUnitInfo: PlatformUnitInfo)
+    {
+        cc.log(platformUnitInfo);
+        
+        let animalNodePool = PoolManager.getInstance().getNodePool(AnimalNodePool) as AnimalNodePool;
+        let node = animalNodePool.get();
+        (node.getComponent(Animal) as Animal).init(platformUnitInfo);
+        node.parent = this.animalLayer;
+    }
 
 
     //------ 按钮点击事件 ------//
-
     onBtnBuy()
     {
         GameDataManager.getInstance().getGameData().buyAnimal(2);

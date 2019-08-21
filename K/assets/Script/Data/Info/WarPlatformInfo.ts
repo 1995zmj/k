@@ -26,12 +26,19 @@ export class UnitInfo
     {
         this._unitInfoType = value;
     }
-
 }
 
 export class AnimalUnitInfo extends UnitInfo
 {
     public static className = "AnimalUnitInfo";
+
+    constructor(id: number, isFromBuy: boolean)
+    {
+        super();
+        this.unitInfoType = EUnitInfoType.ANIMAL;
+        this.id = id;
+        this.isFromBuy = isFromBuy;
+    }
 
     private _id: number = 0;
     public get id(): number
@@ -57,6 +64,12 @@ export class AnimalUnitInfo extends UnitInfo
 export class BoxUnitInfo extends UnitInfo
 {
     public static className = "BoxUnitInfo";
+
+    constructor()
+    {
+        super();
+        this.unitInfoType = EUnitInfoType.BOX;
+    }
 
     private _id: number = 0;
     public get id(): number
@@ -115,7 +128,7 @@ export class WarPlatformInfo
 
     public storageKey: string = null;
 
-    public unitInfoList: PlatformUnitInfo[] = [];
+    public PlatformUnitInfoList: PlatformUnitInfo[] = [];
 
     init()
     {
@@ -125,9 +138,9 @@ export class WarPlatformInfo
         {
             let platformUnitInfo = new PlatformUnitInfo();
             platformUnitInfo.index = index;
-            this.unitInfoList.push(platformUnitInfo);
+            this.PlatformUnitInfoList[index] = platformUnitInfo;
         }
-        cc.log(this.unitInfoList);
+        cc.log(this.PlatformUnitInfoList);
     }
 
     initData(data: object)
@@ -144,7 +157,7 @@ export class WarPlatformInfo
 
     getIdelePlatformUnitInfoId(): number
     {
-        let array = this.unitInfoList;
+        let array = this.PlatformUnitInfoList;
         for (let index = 0; index < array.length; index++)
         {
             const element = array[index];

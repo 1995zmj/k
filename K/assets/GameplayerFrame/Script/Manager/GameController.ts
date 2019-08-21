@@ -1,11 +1,15 @@
 import { ConfigManager } from "./ConfigManager";
 import { PoolManager } from "./PoolManager";
-import { GameDataManager } from "./GameDataManager";
 import { ListenerManager } from "./ListenerManager";
 import { ListenerType } from "../Data/ListenerType";
+import { GameDataManager } from "./GameDataManager";
+import { UIManager } from "./UIManager";
+import MainUI from "../../../Script/UI/MainUI";
+import { ConstValue } from "../Data/ConstValue";
 
 export enum GameState
 {
+    NONE,
     IDLE,
     ANIM,
     PUSH,
@@ -27,24 +31,73 @@ export class GameController
         return this.instance;
     }
 
-    gameState: GameState = GameState.IDLE;
+    public gameState: GameState = GameState.IDLE;
 
-    curLoadedCount: number = 0;
-    sumLoadedCount: number = 0;
+    private curLoadedCount: number = 0;
+    private sumLoadedCount: number = 4;
 
     public initGame()
     {
-        this.sumLoadedCount = 2;
+        this.updateLoadingProgress();
+    }
+
+    private updateLoadingProgress()
+    {
+        switch (this.curLoadedCount)
+        {
+            case 0:
+                this.initConfig();
+                break;
+            case 1:
+                this.initPoolNode();
+                break;
+            case 2:
+                this.initGameData();
+                break;
+            case 3:
+                this.initUI();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private completed()
+    {
+        this.curLoadedCount++;
+        ListenerManager.getInstance().emit(ListenerType.UpdateLoadingProgress, this.curLoadedCount / this.sumLoadedCount);
+        this.updateLoadingProgress();
+    }
+
+    private initConfig()
+    {
         ConfigManager.getInstance().loadAllConfig(() =>
         {
-            this.curLoadedCount++;
-            ListenerManager.getInstance().emit(ListenerType.UpdateLoadingProgress, this.curLoadedCount / this.sumLoadedCount);
+            this.completed();
         });
+    }
+
+    private initPoolNode()
+    {
         PoolManager.getInstance().loadAllNodePool(() =>
         {
-            this.curLoadedCount++;
-            ListenerManager.getInstance().emit(ListenerType.UpdateLoadingProgress, this.curLoadedCount / this.sumLoadedCount);
+            this.completed();
         });
+    }
 
+    private initGameData()
+    {
+        GameDataManager.getInstance().initData(() =>
+        {
+            this.completed();
+        });
+    }
+
+    private initUI()
+    {
+        UIManager.getInstance().openUI(MainUI, ConstValue.MAIN_UI_ZINDEX, () =>
+        {
+            this.completed();
+        })
     }
 }

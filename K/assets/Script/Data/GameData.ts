@@ -37,7 +37,7 @@ export class GameData
 
     initShopInfo()
     {
-        this.shopInfo.initData(DataStorageManager.getInstance().getDataFromLocalData(this.shopInfo.storageKey, this.shopInfo));
+        // this.shopInfo.initData(DataStorageManager.getInstance().getDataFromLocalData(this.shopInfo.storageKey, this.shopInfo));
     }
 
     initWarPlatformInfo()
@@ -84,16 +84,17 @@ export class GameData
     {
         // this.shopInfo.getShopProduct(id).buyCount++;
         // cc.log(this.shopInfo);
-        let animal = new AnimalUnitInfo();
-        animal.unitInfoType = EUnitInfoType.ANIMAL
-        animal.id = id;
-        animal.isFromBuy = true;
+        let animal = new AnimalUnitInfo(id,true);
         let index = this.warPlatformInfo.getIdelePlatformUnitInfoId();
         if (index != null)
         {
-            this.warPlatformInfo.unitInfoList[index].unitInfo = animal;
+            this.warPlatformInfo.PlatformUnitInfoList[index].unitInfo = animal;
             cc.log(index);
-            ListenerManager.getInstance().emit(ListenerType.OnGetAnimal, this.warPlatformInfo.unitInfoList[index]);
+            ListenerManager.getInstance().emit(ListenerType.OnGetAnimal, this.warPlatformInfo.PlatformUnitInfoList[index]);
+        }
+        else
+        {
+            cc.log("没有空闲的")
         }
 
     }
