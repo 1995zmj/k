@@ -1,8 +1,8 @@
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class GuidLayer extends cc.Component {
-
+export default class GuidLayer extends cc.Component
+{
     // @property(cc.Node)
     // maskNodeList: cc.Node[] = [];
     // @property(cc.Node)

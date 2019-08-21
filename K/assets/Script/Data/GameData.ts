@@ -84,7 +84,7 @@ export class GameData
     {
         // this.shopInfo.getShopProduct(id).buyCount++;
         // cc.log(this.shopInfo);
-        let animal = new AnimalUnitInfo(id,true);
+        let animal = new AnimalUnitInfo(id, true);
         let index = this.warPlatformInfo.getIdelePlatformUnitInfoId();
         if (index != null)
         {
