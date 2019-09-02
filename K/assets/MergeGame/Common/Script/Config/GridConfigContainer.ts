@@ -15,7 +15,7 @@ export class GridConfigContainer extends BaseConfigContainer
     constructor(callback: Function, caller: any, arg: any)
     {
         super();
-        cc.loader.loadRes(ConstValue.CONFIG_FILE_DIR + "GridConfig", (err, object) =>
+        cc.loader.loadRes(ConstValue.CONFIG_FILE_DIR + "Grid", (err, object) =>
         {
             if (err)
             {

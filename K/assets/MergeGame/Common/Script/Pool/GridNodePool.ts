@@ -1,6 +1,6 @@
 import { BaseNodePool } from "../../../../GameplayerFrame/Script/Pool/BaseNodePool";
-import Grid from "../../../Grid/Grid";
 import { ConstValue } from "../../../../GameplayerFrame/Script/Data/ConstValue";
+import Grid from "../../../Pool/Grid/Grid";
 
 
 export class GridNodePool extends BaseNodePool

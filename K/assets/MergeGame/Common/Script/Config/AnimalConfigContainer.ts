@@ -15,7 +15,7 @@ export class AnimalConfigContainer extends BaseConfigContainer
     constructor(callback: Function, caller: any, arg: any)
     {
         super();
-        cc.loader.loadRes(ConstValue.CONFIG_FILE_DIR + "AnimalConfig", (err, object) =>
+        cc.loader.loadRes(ConstValue.CONFIG_FILE_DIR + "Animal", (err, object) =>
         {
             if (err)
             {

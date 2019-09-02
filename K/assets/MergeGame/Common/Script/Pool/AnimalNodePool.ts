@@ -1,12 +1,12 @@
 import { ConstValue } from "../../../../GameplayerFrame/Script/Data/ConstValue";
 import { BaseNodePool } from "../../../../GameplayerFrame/Script/Pool/BaseNodePool";
-import Animal from "../../../Animal/Animal";
+import Animal from "../../../Pool/Animal/Animal";
 
 export class AnimalNodePool extends BaseNodePool
 {
     private animalPrefab: cc.Node = null;
     private animalNodePool: cc.NodePool = null;
-    private size:number = 10;
+    private size: number = 10;
 
     constructor(callback: Function, caller: any, arg: any)
     {
@@ -40,17 +40,19 @@ export class AnimalNodePool extends BaseNodePool
     get()
     {
         let node = null;
-        if(this.animalNodePool.size() > 0){
+        if (this.animalNodePool.size() > 0)
+        {
             node = this.animalNodePool.get();
-        }else{
+        } else
+        {
             cc.log("不够  添加");
             node = cc.instantiate(this.animalPrefab);
         }
         return node;
     }
 
-    put(node:cc.Node)
+    put(node: cc.Node)
     {
-        
+
     }
 }

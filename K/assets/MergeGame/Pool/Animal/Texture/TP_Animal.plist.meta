@@ -1,7 +1,6 @@
 {
   "ver": "1.2.4",
   "uuid": "413428b3-3c22-4561-bfbe-6734a7103aa7",
-  "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
   "size": {
     "width": 1024,
     "height": 1024
@@ -11,7 +10,6 @@
     "bear.png": {
       "ver": "1.0.4",
       "uuid": "ef672ee9-9e58-4ab1-a62d-7b4a90570b41",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -33,7 +31,6 @@
     "buffalo.png": {
       "ver": "1.0.4",
       "uuid": "6d0cb890-b3a1-4853-ba7a-c9b64748ec86",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -55,7 +52,6 @@
     "chick.png": {
       "ver": "1.0.4",
       "uuid": "f3ca310f-42a8-49d5-a63a-b7f00bc5a3ad",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -77,7 +73,6 @@
     "chicken.png": {
       "ver": "1.0.4",
       "uuid": "60c82a2f-a291-46f1-a267-489c7049af88",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -99,7 +94,6 @@
     "cow.png": {
       "ver": "1.0.4",
       "uuid": "7ba87225-c10c-48e1-aef3-b455add7692b",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -121,7 +115,6 @@
     "crocodile.png": {
       "ver": "1.0.4",
       "uuid": "e63d1ca9-578a-4c42-9a58-d00c454d554e",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -143,7 +136,6 @@
     "dog.png": {
       "ver": "1.0.4",
       "uuid": "1a406c2b-20e5-4de9-a797-7c9ed0491da7",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -165,7 +157,6 @@
     "duck.png": {
       "ver": "1.0.4",
       "uuid": "dc8181c5-409e-4f4e-ab31-6b52ebe2402d",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -187,7 +178,6 @@
     "elephant.png": {
       "ver": "1.0.4",
       "uuid": "7dbeeabc-2a36-4ef4-a6f5-497ee1e48af1",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -209,7 +199,6 @@
     "frog.png": {
       "ver": "1.0.4",
       "uuid": "db99759f-064b-4074-afb6-8c6d41a9c21b",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -231,7 +220,6 @@
     "giraffe.png": {
       "ver": "1.0.4",
       "uuid": "98433e14-0ae1-48ee-8222-c88f3545f5fe",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -253,7 +241,6 @@
     "goat.png": {
       "ver": "1.0.4",
       "uuid": "31d456d6-2a6a-4a79-b20f-d9be6d5b7ced",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -275,7 +262,6 @@
     "gorilla.png": {
       "ver": "1.0.4",
       "uuid": "81c6c91e-3fae-464f-8617-94fbcced71ee",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -297,7 +283,6 @@
     "hippo.png": {
       "ver": "1.0.4",
       "uuid": "b7d02c30-e5f5-4bdd-86fd-24642a87a3dc",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -319,7 +304,6 @@
     "horse.png": {
       "ver": "1.0.4",
       "uuid": "5ef71a4e-d5f6-4348-8e30-31b8fc8fc2a4",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -341,7 +325,6 @@
     "monkey.png": {
       "ver": "1.0.4",
       "uuid": "dd907697-2f46-4766-84ba-411ba4cd1e84",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -363,7 +346,6 @@
     "moose.png": {
       "ver": "1.0.4",
       "uuid": "28b6e5dd-8bc4-4e41-9328-990341728679",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -385,7 +367,6 @@
     "narwhal.png": {
       "ver": "1.0.4",
       "uuid": "934e6325-1277-4a08-a5ac-6d3bdf1acf74",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -407,7 +388,6 @@
     "owl.png": {
       "ver": "1.0.4",
       "uuid": "7e7e4ab1-ad8c-42f3-b904-cb386d84a74f",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -429,7 +409,6 @@
     "panda.png": {
       "ver": "1.0.4",
       "uuid": "4a7c80b5-5566-4895-96a3-9f76e53dc53c",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -451,7 +430,6 @@
     "parrot.png": {
       "ver": "1.0.4",
       "uuid": "7bee13aa-d694-4534-842e-fd29642e4929",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -473,7 +451,6 @@
     "penguin.png": {
       "ver": "1.0.4",
       "uuid": "3d20f620-9a8c-4dd2-a5b8-8e8fb7dff932",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -495,7 +472,6 @@
     "pig.png": {
       "ver": "1.0.4",
       "uuid": "bc1f64af-9719-4b9c-8a03-5a7ecf53304b",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -517,7 +493,6 @@
     "rabbit.png": {
       "ver": "1.0.4",
       "uuid": "d4802d43-edca-4ec1-ba03-aa162b7880b1",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -539,7 +514,6 @@
     "rhino.png": {
       "ver": "1.0.4",
       "uuid": "61c0a13d-8e29-4b34-b81e-3dfe097491e4",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -561,7 +535,6 @@
     "sloth.png": {
       "ver": "1.0.4",
       "uuid": "095074f4-b497-4546-95a4-a898f6ddac25",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -583,7 +556,6 @@
     "snake.png": {
       "ver": "1.0.4",
       "uuid": "4b7be440-bb5c-4803-9106-59217afc4d6d",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -605,7 +577,6 @@
     "walrus.png": {
       "ver": "1.0.4",
       "uuid": "02f60d45-0711-4c4f-bd8a-2a8a9896a676",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -627,7 +598,6 @@
     "whale.png": {
       "ver": "1.0.4",
       "uuid": "e6a6d978-9389-4706-9f3f-45a1445ddd61",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -649,7 +619,6 @@
     "zebra.png": {
       "ver": "1.0.4",
       "uuid": "95ed698b-ee05-4788-a174-69a9d344f8db",
-      "rawTextureUuid": "5b8b3eb9-9e02-42ee-a433-1254f42b3c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
