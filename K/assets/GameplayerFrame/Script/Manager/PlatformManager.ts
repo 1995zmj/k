@@ -1,3 +1,4 @@
+// TODO
 const {ccclass, property} = cc._decorator;
 
 export enum EPlatform

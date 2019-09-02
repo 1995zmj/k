@@ -1,4 +1,4 @@
-import { GameData } from "../../../MergeGame/Script/Data/GameData";
+import { GameData } from "../Data/GameData";
 
 export class GameDataManager
 {

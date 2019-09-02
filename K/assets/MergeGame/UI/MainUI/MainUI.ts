@@ -1,14 +1,4 @@
-import { AnimalConfigContainer } from "../Config/AnimalConfigContainer";
-import { GridConfigContainer } from "../Config/GridConfigContainer";
 
-import Animal from "../Object/Animal";
-import { AnimalNodePool } from "../Pool/AnimalNodePool";
-import { GridNodePool } from "../Pool/GridNodePool";
-import { GridHelp } from "../Util/GridHelp";
-import ShopUI from "./ShopUI";
-
-import LayerUI from "./LayerUI";
-import { EUnitInfoType, PlatformUnitInfo, AnimalUnitInfo } from "../Data/Info/WarPlatformInfo";
 import { BaseUI } from "../../../GameplayerFrame/Script/UI/BaseUI";
 import { ListenerManager } from "../../../GameplayerFrame/Script/Manager/ListenerManager";
 import { ListenerType } from "../../../GameplayerFrame/Script/Data/ListenerType";
@@ -16,6 +6,8 @@ import { ConfigManager } from "../../../GameplayerFrame/Script/Manager/ConfigMan
 import { PoolManager } from "../../../GameplayerFrame/Script/Manager/PoolManager";
 import { GameDataManager } from "../../../GameplayerFrame/Script/Manager/GameDataManager";
 import { UIManager } from "../../../GameplayerFrame/Script/Manager/UIManager";
+import { PlatformUnitInfo } from "../../Common/Script/Data/Info/WarPlatformInfo";
+import ShopUI from "../ShopUI/ShopUI";
 
 
 const { ccclass, property } = cc._decorator;

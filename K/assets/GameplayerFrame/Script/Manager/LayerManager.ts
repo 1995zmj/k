@@ -1,4 +1,3 @@
-
 // TODO
 export class LayerManager
 {

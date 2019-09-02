@@ -5,11 +5,11 @@ import { ListenerType } from "../Data/ListenerType";
 import { GameDataManager } from "./GameDataManager";
 import { UIManager } from "./UIManager";
 import { ConstValue } from "../Data/ConstValue";
-import MainUI from "../../../MergeGame/Script/UI/MainUI";
-import { AnimalConfigContainer } from "../../../MergeGame/Script/Config/AnimalConfigContainer";
-import { GridConfigContainer } from "../../../MergeGame/Script/Config/GridConfigContainer";
-import { GridNodePool } from "../../../MergeGame/Script/Pool/GridNodePool";
-import { AnimalNodePool } from "../../../MergeGame/Script/Pool/AnimalNodePool";
+import { AnimalConfigContainer } from "../../../MergeGame/Common/Script/Config/AnimalConfigContainer";
+import { GridConfigContainer } from "../../../MergeGame/Common/Script/Config/GridConfigContainer";
+import { AnimalNodePool } from "../../../MergeGame/Common/Script/Pool/AnimalNodePool";
+import { GridNodePool } from "../../../MergeGame/Common/Script/Pool/GridNodePool";
+import MainUI from "../../../MergeGame/UI/MainUI/MainUI";
 
 export enum GameState {
     NONE,

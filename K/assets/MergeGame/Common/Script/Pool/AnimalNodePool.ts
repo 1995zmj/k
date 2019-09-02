@@ -1,7 +1,6 @@
-
-import Animal from "../Object/Animal";
-import { ConstValue } from "../../../GameplayerFrame/Script/Data/ConstValue";
-import { BaseNodePool } from "../../../GameplayerFrame/Script/Pool/BaseNodePool";
+import { ConstValue } from "../../../../GameplayerFrame/Script/Data/ConstValue";
+import { BaseNodePool } from "../../../../GameplayerFrame/Script/Pool/BaseNodePool";
+import Animal from "../../../Animal/Animal";
 
 export class AnimalNodePool extends BaseNodePool
 {

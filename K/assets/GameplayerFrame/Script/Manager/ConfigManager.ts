@@ -49,7 +49,6 @@ export class ConfigManager
         {
             if (callback)
             {
-                cc.log(this.configContainerList);
                 callback();
             }
         }

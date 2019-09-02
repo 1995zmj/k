@@ -1,7 +1,7 @@
 import { UIManager } from "../../GameplayerFrame/Script/Manager/UIManager";
-import LoadingUI from "../Script/UI/LoadingUI";
 import { ConstValue } from "../../GameplayerFrame/Script/Data/ConstValue";
 import { GameController } from "../../GameplayerFrame/Script/Manager/GameController";
+import LoadingUI from "../UI/LoadingUI/LoadingUI";
 
 const {ccclass, property} = cc._decorator;
 

@@ -1,4 +1,3 @@
-import { BaseConfigContainer, ConfigContainerClass } from "../Config/BaseConfigContainer";
 import { BaseNodePool, NodePoolClass } from "../Pool/BaseNodePool";
 
 export class PoolManager {
@@ -15,7 +14,6 @@ export class PoolManager {
     }
 
     public loadAllNodePool(callback?: Function, ...nodePoolClasss: {new (callback: Function, caller: any, arg: any): BaseNodePool}[]): void {
-        cc.log(nodePoolClasss);
         for (let index = 0; index < nodePoolClasss.length; index++) {
             this.loadNodePool(nodePoolClasss[index], this.callback, callback);
         }
@@ -40,7 +38,6 @@ export class PoolManager {
         this.curLoadedCount += 1;
         if (this.nodePoolList.length == this.curLoadedCount) {
             if (callback) {
-                cc.log(this.nodePoolList);
                 callback();
             }
         }

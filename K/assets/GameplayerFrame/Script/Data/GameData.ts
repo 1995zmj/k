@@ -1,13 +1,9 @@
-// import { WarPlatformInfo, AnimalUnitInfo } from "./WarPlatformInfo";
-
-import Animal from "../Object/Animal";
-import { PlayerInfo } from "./Info/PlayerInfo";
-import { ShopInfo } from "./Info/ShopInfo";
-import { WarPlatformInfo, AnimalUnitInfo, UnitInfo, EUnitInfoType } from "./Info/WarPlatformInfo";
-import { ListenerType } from "../../GameplayerFrame/Script/Data/ListenerType";
-import { ListenerManager } from "../../GameplayerFrame/Script/Manager/ListenerManager";
-import { DataStorageManager } from "../../GameplayerFrame/Script/Manager/DataStorageManager";
-
+import { PlayerInfo } from "../../../MergeGame/Common/Script/Data/Info/PlayerInfo";
+import { ShopInfo } from "../../../MergeGame/Common/Script/Data/Info/ShopInfo";
+import { WarPlatformInfo, AnimalUnitInfo } from "../../../MergeGame/Common/Script/Data/Info/WarPlatformInfo";
+import { ListenerManager } from "../Manager/ListenerManager";
+import { ListenerType } from "./ListenerType";
+import { DataStorageManager } from "../Manager/DataStorageManager";
 
 export class GameData
 {
