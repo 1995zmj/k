@@ -1,5 +1,5 @@
-import { ConfigManager } from "../../../GameplayerFrame/Script/Manager/ConfigManager";
 import { GridConfigContainer } from "../../Config/GridConfigContainer";
+import { ConfigManager } from "../../../../../GameplayerFrame/Script/Manager/ConfigManager";
 
 export enum EUnitInfoType
 {

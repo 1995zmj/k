@@ -4,6 +4,7 @@ import { WarPlatformInfo, AnimalUnitInfo } from "../../../MergeGame/Common/Scrip
 import { ListenerManager } from "../Manager/ListenerManager";
 import { ListenerType } from "./ListenerType";
 import { DataStorageManager } from "../Manager/DataStorageManager";
+import { HelpTool } from "../../../MergeGame/Util/HelpTool";
 
 export class GameData
 {
@@ -78,8 +79,6 @@ export class GameData
 
     buyAnimal(id: number)
     {
-        // this.shopInfo.getShopProduct(id).buyCount++;
-        // cc.log(this.shopInfo);
         let animal = new AnimalUnitInfo(id, true);
         let index = this.warPlatformInfo.getIdelePlatformUnitInfoId();
         if (index != null)
@@ -90,8 +89,7 @@ export class GameData
         }
         else
         {
-            cc.log("没有空闲的")
+            HelpTool.showTip("no have platform");
         }
-
     }
 }

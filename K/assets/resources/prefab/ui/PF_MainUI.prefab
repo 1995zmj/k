@@ -1352,10 +1352,10 @@
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 1
+      "__id__": 10
     },
     "component": "",
-    "_componentId": "a7bdbIQhm1DbK/iGbrDjqV7",
+    "_componentId": "57a83QMOkhIionLQm2N3zS3",
     "handler": "onBtnBuy",
     "customEventData": ""
   },
@@ -1508,9 +1508,8 @@
     "animalLayer": {
       "__id__": 8
     },
-    "goldLabel": null,
-    "spriteFrame": {
-      "__uuid__": "d0989a1a-f779-4ab6-bfd7-bec13ded95d3"
+    "buttonLayer": {
+      "__id__": 10
     },
     "_id": ""
   },

@@ -1,8 +1,7 @@
-import ListViewItem from "../Util/ListView/ListViewItem";
-import Animal from "./Animal";
-import { AnimalData, AnimalConfigContainer } from "../Config/AnimalConfigContainer";
-import { ConfigManager } from "../../GameplayerFrame/Script/Manager/ConfigManager";
-import { GameDataManager } from "../../GameplayerFrame/Script/Manager/GameDataManager";
+import ListViewItem from "../../../GameplayerFrame/Script/Util/ListView/ListViewItem";
+import { AnimalData, AnimalConfigContainer } from "../../Common/Script/Config/AnimalConfigContainer";
+import { ConfigManager } from "../../../GameplayerFrame/Script/Manager/ConfigManager";
+import { GameDataManager } from "../../../GameplayerFrame/Script/Manager/GameDataManager";
 
 
 const { ccclass, property } = cc._decorator;

@@ -23,4 +23,6 @@ export class ConstValue
     public static readonly LAYER_UI_ZINDEX = 50 * ConstValue.UNIT;
 
     public static readonly LOADING_UI_ZINDEX = 100 * ConstValue.UNIT;
+
+    public static readonly TOP_UI_ZINDEX = 100 * ConstValue.UNIT;
 }
