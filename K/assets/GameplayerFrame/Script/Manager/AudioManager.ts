@@ -1,12 +1,10 @@
 import { ConstValue } from "../Data/ConstValue";
-import { GameDataManager } from "./GameDataManager";
 
 export class AudioManager
 {
     private static instance: AudioManager = null;
 
     private bgm: string = "";
-    private isFirstPlay = true;
 
     public static getInstance(): AudioManager
     {
@@ -19,15 +17,15 @@ export class AudioManager
 
     public playSound(soundName: string, loop?: boolean, volume?: number)
     {
-        if (GameDataManager.getInstance().getGameData().playerInfo.closeAudio)
-        {
-            if (this.isFirstPlay)
-            {
-                cc.audioEngine.play(null, false, 1);
-                this.isFirstPlay = false;
-            }
-            return;
-        }
+        // if (GameDataManager.getInstance().getGameData().playerInfo.closeAudio)
+        // {
+        //     if (this.isFirstPlay)
+        //     {
+        //         cc.audioEngine.play(null, false, 1);
+        //         this.isFirstPlay = false;
+        //     }
+        //     return;
+        // }
         let path = ConstValue.AUDIO_DIR + soundName;
         cc.loader.loadRes(path, cc.AudioClip, function (err, clip)
         {
@@ -63,10 +61,6 @@ export class AudioManager
             return;
         }
         this.bgm = soundName;
-        if (GameDataManager.getInstance().getGameData().playerInfo.closeBgm)
-        {
-            return;
-        }
         cc.audioEngine.stopMusic();
         let path = ConstValue.AUDIO_DIR + soundName;
         cc.loader.loadRes(path, cc.AudioClip, function (err, clip)

@@ -1,7 +1,7 @@
 
 export interface NodePoolClass<T extends BaseNodePool>
 {
-    new (size:number,callback: Function, caller: any, arg: any): T;
+    new (callback: Function, caller: any, arg: any): T;
 }
 
 export abstract class BaseNodePool

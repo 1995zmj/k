@@ -4,11 +4,14 @@ import { ListenerManager } from "./ListenerManager";
 import { ListenerType } from "../Data/ListenerType";
 import { GameDataManager } from "./GameDataManager";
 import { UIManager } from "./UIManager";
-import MainUI from "../../../Script/UI/MainUI";
 import { ConstValue } from "../Data/ConstValue";
+import MainUI from "../../../MergeGame/Script/UI/MainUI";
+import { AnimalConfigContainer } from "../../../MergeGame/Script/Config/AnimalConfigContainer";
+import { GridConfigContainer } from "../../../MergeGame/Script/Config/GridConfigContainer";
+import { GridNodePool } from "../../../MergeGame/Script/Pool/GridNodePool";
+import { AnimalNodePool } from "../../../MergeGame/Script/Pool/AnimalNodePool";
 
-export enum GameState
-{
+export enum GameState {
     NONE,
     IDLE,
     ANIM,
@@ -19,13 +22,10 @@ export enum GameState
     RESULT
 }
 
-export class GameController
-{
+export class GameController {
     private static instance: GameController;
-    public static getInstance(): GameController
-    {
-        if (this.instance == null)
-        {
+    public static getInstance(): GameController {
+        if (this.instance == null) {
             this.instance = new GameController();
         }
         return this.instance;
@@ -36,15 +36,12 @@ export class GameController
     private curLoadedCount: number = 0;
     private sumLoadedCount: number = 4;
 
-    public initGame()
-    {
+    public initGame() {
         this.updateLoadingProgress();
     }
 
-    private updateLoadingProgress()
-    {
-        switch (this.curLoadedCount)
-        {
+    private updateLoadingProgress() {
+        switch (this.curLoadedCount) {
             case 0:
                 this.initConfig();
                 break;
@@ -62,41 +59,42 @@ export class GameController
         }
     }
 
-    private completed()
-    {
+    private completed() {
         this.curLoadedCount++;
         ListenerManager.getInstance().emit(ListenerType.UpdateLoadingProgress, this.curLoadedCount / this.sumLoadedCount);
         this.updateLoadingProgress();
     }
 
-    private initConfig()
-    {
-        ConfigManager.getInstance().loadAllConfig(() =>
-        {
+    private initConfig() {
+       
+
+        ConfigManager.getInstance().loadAllConfig(
+            () => {
+                this.completed();
+            },
+            AnimalConfigContainer,
+            GridConfigContainer,
+        );
+    }
+
+    private initPoolNode() {
+        PoolManager.getInstance().loadAllNodePool(
+            () => {
+                this.completed();
+            },
+            AnimalNodePool,
+            GridNodePool,
+        );
+    }
+
+    private initGameData() {
+        GameDataManager.getInstance().initData(() => {
             this.completed();
         });
     }
 
-    private initPoolNode()
-    {
-        PoolManager.getInstance().loadAllNodePool(() =>
-        {
-            this.completed();
-        });
-    }
-
-    private initGameData()
-    {
-        GameDataManager.getInstance().initData(() =>
-        {
-            this.completed();
-        });
-    }
-
-    private initUI()
-    {
-        UIManager.getInstance().openUI(MainUI, ConstValue.MAIN_UI_ZINDEX, () =>
-        {
+    private initUI() {
+        UIManager.getInstance().openUI(MainUI, ConstValue.MAIN_UI_ZINDEX, () => {
             this.completed();
         })
     }

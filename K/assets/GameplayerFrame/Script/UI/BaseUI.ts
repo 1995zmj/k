@@ -1,5 +1,5 @@
 import { ConstValue } from "../Data/ConstValue";
-// import { ListenerManager } from "../Manager/ListenerManager";
+import { ListenerManager } from "../Manager/ListenerManager";
 
 export enum EUIType
 {
@@ -39,7 +39,7 @@ export abstract class BaseUI extends cc.Component
 
     onDestroy(): void
     {
-        // ListenerManager.getInstance().removeAll(this);
+        ListenerManager.getInstance().targetOff(this);
     }
 
     onShow()

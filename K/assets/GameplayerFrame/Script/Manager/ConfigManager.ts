@@ -1,8 +1,4 @@
 import { BaseConfigContainer, ConfigContainerClass } from "../Config/BaseConfigContainer";
-import { AnimalConfigContainer } from "../../../Script/Config/AnimalConfigContainer";
-import { GridConfigContainer } from "../../../Script/Config/GridConfigContainer";
-
-
 
 export class ConfigManager
 {
@@ -20,10 +16,11 @@ export class ConfigManager
         return this.instance;
     }
 
-    public loadAllConfig(callback?: Function): void
-    {
-        this.loadConfig(AnimalConfigContainer, this.callback, callback);
-        this.loadConfig(GridConfigContainer, this.callback, callback);
+    public loadAllConfig(callback: Function, ...configClasss:{new (callback: Function, caller: any, arg: any): BaseConfigContainer}[]): void
+    {  
+        for (let index = 0; index < configClasss.length; index++) {
+            this.loadConfig(configClasss[index], this.callback, callback);
+        }
     }
 
     public getConfig<T extends BaseConfigContainer>(configClass: ConfigContainerClass<T>): BaseConfigContainer
@@ -52,6 +49,7 @@ export class ConfigManager
         {
             if (callback)
             {
+                cc.log(this.configContainerList);
                 callback();
             }
         }

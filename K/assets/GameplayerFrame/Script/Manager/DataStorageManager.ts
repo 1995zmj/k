@@ -1,3 +1,5 @@
+// TODO
+
 export interface info
 {
     initData(data: object);
