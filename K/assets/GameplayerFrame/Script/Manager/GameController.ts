@@ -66,10 +66,9 @@ export class GameController {
     }
 
     private initConfig() {
-       
-
         ConfigManager.getInstance().loadAllConfig(
             () => {
+                cc.log("初始化配置表");
                 this.completed();
             },
             AnimalConfigContainer,
@@ -80,6 +79,7 @@ export class GameController {
     private initPoolNode() {
         PoolManager.getInstance().loadAllNodePool(
             () => {
+                cc.log("初始化对象池");
                 this.completed();
             },
             AnimalNodePool,
@@ -89,12 +89,14 @@ export class GameController {
 
     private initGameData() {
         GameDataManager.getInstance().initData(() => {
+            cc.log("初始化游戏数据");
             this.completed();
         });
     }
 
     private initUI() {
         UIManager.getInstance().openUI(MainUI, ConstValue.MAIN_UI_ZINDEX, () => {
+            cc.log("初始化主游戏界面");
             this.completed();
         })
     }

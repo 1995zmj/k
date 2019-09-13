@@ -8,9 +8,14 @@ export class GridData
     y: number;
 }
 
+export class gridConfigData
+{
+    [key:number] : GridData
+}
+
 export class GridConfigContainer extends BaseConfigContainer
 {
-    private gridConfigData: GridData[] = [];
+    private gridConfigData: gridConfigData = {};
 
     constructor(callback: Function, caller: any, arg: any)
     {
@@ -38,7 +43,7 @@ export class GridConfigContainer extends BaseConfigContainer
         );
     }
 
-    getGridConfigData(): GridData[]
+    getGridConfigData(): gridConfigData
     {
         return this.gridConfigData;
     }

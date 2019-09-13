@@ -5,15 +5,12 @@ import { ListenerType } from "../../../GameplayerFrame/Script/Data/ListenerType"
 import { ConfigManager } from "../../../GameplayerFrame/Script/Manager/ConfigManager";
 import { PoolManager } from "../../../GameplayerFrame/Script/Manager/PoolManager";
 import { GameDataManager } from "../../../GameplayerFrame/Script/Manager/GameDataManager";
-import { UIManager } from "../../../GameplayerFrame/Script/Manager/UIManager";
 import { PlatformUnitInfo, EUnitInfoType } from "../../Common/Script/Data/Info/WarPlatformInfo";
-import ShopUI from "../ShopUI/ShopUI";
 import { AnimalConfigContainer } from "../../Common/Script/Config/AnimalConfigContainer";
 import { AnimalNodePool } from "../../Common/Script/Pool/AnimalNodePool";
 import { GridNodePool } from "../../Common/Script/Pool/GridNodePool";
 import Animal from "../../Pool/Animal/Animal";
 import { GridHelp } from "../../Common/Script/Util/GridHelp";
-
 
 const { ccclass, property } = cc._decorator;
 
@@ -21,7 +18,6 @@ const { ccclass, property } = cc._decorator;
 export default class MainUI extends BaseUI
 {
     protected static className = "MainUI";
-
 
     @property(cc.Node)
     private gridLayer: cc.Node = null;

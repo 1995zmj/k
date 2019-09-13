@@ -134,11 +134,14 @@ export class WarPlatformInfo
     {
         let container = ConfigManager.getInstance().getConfig(GridConfigContainer) as GridConfigContainer;
         let data = container.getGridConfigData();
-        for (let index = 0; index < data.length; index++)
-        {
-            let platformUnitInfo = new PlatformUnitInfo();
-            platformUnitInfo.index = index;
-            this.PlatformUnitInfoList[index] = platformUnitInfo;
+
+        for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+                const element = data[key];
+                let platformUnitInfo = new PlatformUnitInfo();
+                platformUnitInfo.index = Number(key);
+                this.PlatformUnitInfoList[key] = platformUnitInfo;
+            }
         }
         cc.log(this.PlatformUnitInfoList);
     }

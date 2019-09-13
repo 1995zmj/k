@@ -3,14 +3,19 @@ import { ConstValue } from "../../../../GameplayerFrame/Script/Data/ConstValue";
 
 export class AnimalData
 {
-    id: number;
     price: number;
     name: string;
 }
 
+export class AnimalConfigData
+{
+    [key:number] : AnimalData
+}
+
 export class AnimalConfigContainer extends BaseConfigContainer
 {
-    private animalConfigData: AnimalData[] = [];
+
+    private animalConfigData: AnimalConfigData = {};
 
     constructor(callback: Function, caller: any, arg: any)
     {
@@ -38,7 +43,7 @@ export class AnimalConfigContainer extends BaseConfigContainer
         );
     }
 
-    getAnimalConfigData(): AnimalData[]
+    getAnimalConfigData(): AnimalConfigData
     {
         return this.animalConfigData;
     }
