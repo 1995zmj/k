@@ -17,6 +17,6 @@ export default class Main extends cc.Component {
 
     start()
     {
-
+        
     }
 }
