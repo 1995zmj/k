@@ -116,4 +116,10 @@ export default class MainUI extends BaseUI
         (node.getComponent(Animal) as Animal).init(platformUnitInfo);
         node.parent = this.animalLayer;
     }
+
+    //------ 按钮 ------//
+    onBtnTest()
+    {
+        this.gridLayer.active = this.gridLayer.active ? false : true;
+    }
 }

@@ -1,7 +1,8 @@
-import { ConfigManager } from "../../GameplayerFrame/Script/Manager/ConfigManager";
-import { AnimalConfigContainer } from "../Config/AnimalConfigContainer";
-import { AnimalUnitInfo, PlatformUnitInfo } from "../Data/Info/WarPlatformInfo";
-import { GridHelp } from "../Util/GridHelp";
+import { PlatformUnitInfo, AnimalUnitInfo } from "../../Common/Script/Data/Info/WarPlatformInfo";
+import { ConfigManager } from "../../../GameplayerFrame/Script/Manager/ConfigManager";
+import { AnimalConfigContainer } from "../../Common/Script/Config/AnimalConfigContainer";
+import { GridHelp } from "../../Common/Script/Util/GridHelp";
+
 
 const { ccclass, property } = cc._decorator;
 
