@@ -8,9 +8,9 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class MainMenuExperienceManagerComponent extends ExperienceManagerComponent {
 
-    start () {
-        GameInstance.getInstance().getSubsystem(ZGameFeaturesSubsystem).loadGameFeature('G101', ()=>{
-            RegisterClassManager.getInstance().getClass('G101', 'G101GameLayout')
-        })
-    }
+    // start () {
+    //     GameInstance.getInstance().getSubsystem(ZGameFeaturesSubsystem).loadGameFeature('G101', ()=>{
+    //         RegisterClassManager.getInstance().getClass('G101', 'G101GameLayout')
+    //     })
+    // }
 }

@@ -10,8 +10,6 @@ export interface CommonUserWidgetClass<T extends ZCommonUserWidget> {
 export class ZCommonUserWidget extends ZObject {
     static prefabPath: string = '';
     private rootNode: cc.Node;
-    constructor() {
-    }
 
 
     // public preLoadRes() {

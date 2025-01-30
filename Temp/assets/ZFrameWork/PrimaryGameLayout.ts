@@ -6,7 +6,7 @@ import { ZClass } from "./Object";
 
 export class ZPrimaryGameLayout extends ZCommonUserWidget {
     private layers: Map<ZGameplayTag, ZCommonActivatableWidgetContainerBase>;
-    static prefabPath: string = "P_MainMean_U";
+    static prefabPath: string = "ui/P_MainMean_U";
     public registerLayer(layerTag: ZGameplayTag, layerWidget: ZCommonActivatableWidgetContainerBase) {
         this.layers.set(layerTag, layerWidget)
     }
