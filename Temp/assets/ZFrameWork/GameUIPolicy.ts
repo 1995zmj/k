@@ -1,10 +1,9 @@
-import { AssetSubsystem } from "./AssetSubsystem";
 import { ZCommonActivatableWidget } from "./CommonActivatableWidget";
-import { ZCommonActivatableWidgetContainerBase } from "./CommonActivatableWidgetContainerBase";
 import { GameInstance } from "./GameInstance";
-import { ZGameplayTag } from "./GameplayTag";
-import { ZClass, ZObject } from "./Object";
+import { ZGameUIManagerSubsystem } from "./GameUIManagerSubsystem";
+import { ZObject } from "./Object";
 import { ZPrimaryGameLayout } from "./PrimaryGameLayout";
+import { CommonUserWidgetClass, ZCommonUserWidget } from "./CommonUserWidget";
 
 // 这里是争对本地多用户的
 
@@ -13,47 +12,47 @@ class RootViewportLayoutInfo {
     public bAddedToViewport: boolean = false
 }
 
-export class ZGameUIPolicy extends ZObject {
-    private _layoutClass
+export class ZGameUIPolicy implements ZObject {
     private _rootViewLayoutInfo: RootViewportLayoutInfo = null
+
+    public getRootLayout(): ZPrimaryGameLayout {
+        return this._rootViewLayoutInfo.rootLayout ? this._rootViewLayoutInfo.rootLayout : null
+    }
 
     public getLayoutWidgetClass() {
         return ZPrimaryGameLayout
     }
 
-     public createLayoutWidget() {
-        GameInstance.getInstance().getSubsystem(AssetSubsystem).loadPrefab(ZPrimaryGameLayout.prefabPath)
-        
-        return new ZPrimaryGameLayout()
-        //  这个加到场景下面
+    public createLayoutWidget(): ZPrimaryGameLayout {
+        let tempClass = this.getLayoutWidgetClass()
+        return new tempClass()
     }
 
-    public addView(layout: ZPrimaryGameLayout){
-        let node = layout.node
-        cc.director.getScene().addChild(node)
+    public addView(layout: ZPrimaryGameLayout) {
+        let node = layout.rootNode
+        cc.director.getScene().getChildByName("Canvas").addChild(node)
+    }
+
+    public removeView(layout: ZPrimaryGameLayout) {
+        layout.rootNode.removeFromParent()
     }
 
     public notifyPlayerAdded() {
         if (this._rootViewLayoutInfo) {
             if (!this._rootViewLayoutInfo.bAddedToViewport) {
-                console.log('sss')
-                // this._rootViewLayoutInfo.rootLayout.remove()
+                this.addView(this._rootViewLayoutInfo.rootLayout)
+                this._rootViewLayoutInfo.bAddedToViewport = true
             }
-            // 
         }
         else {
-            let temp = new RootViewportLayoutInfo()
-            temp.rootLayout = this.createLayoutWidget()
-            this.addView(temp.rootLayout)
-            this._rootViewLayoutInfo = temp
+            this._rootViewLayoutInfo = new RootViewportLayoutInfo()
+            this._rootViewLayoutInfo.rootLayout = this.createLayoutWidget()
+            this.addView(this._rootViewLayoutInfo.rootLayout)
+            this._rootViewLayoutInfo.bAddedToViewport = true
         }
-        // if this._rootLayout
-        // let newLayout = new ZPrimaryGameLayout()
-        // //  这个加到场景下面
     }
 
     public notifyPlayerRemoved() {
-        // let newLayout = new ZPrimaryGameLayout()
-        // //  这个加到场景下面
+
     }
 }

@@ -1,4 +1,4 @@
-import { RegisterClassManager } from "./RegisterClassManager";
+import { RegisterClassManager } from "./RegisterManager";
 import { ZSubsystem } from "./Subsystem";
 
 
@@ -38,6 +38,25 @@ export class AssetSubsystem extends ZSubsystem {
                 callback(prefab);
             });
         }
+    }
+
+    public loadPrefabPromise(prefabPath: string): Promise<cc.Prefab> {
+        return new Promise((resolve)=>{
+            let tempPrefab = this.prefabMap.get(prefabPath);
+            if (tempPrefab) {
+                resolve(tempPrefab)
+            }
+            else {
+                cc.resources.load(prefabPath, cc.Prefab, (err, prefab) => {
+                    if (err) {
+                        console.log(err);
+                        return;
+                    }
+                    this.prefabMap.set(prefabPath, prefab);
+                    resolve(tempPrefab)
+                });
+            }
+        })
     }
 
 

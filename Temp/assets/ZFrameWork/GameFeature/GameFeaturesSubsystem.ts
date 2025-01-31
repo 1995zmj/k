@@ -1,6 +1,6 @@
 import { AssetSubsystem } from "../AssetSubsystem";
 import { GameInstance } from "../GameInstance";
-import { RegisterClassManager } from "../RegisterClassManager";
+import { RegisterClassManager } from "../RegisterManager";
 import { ZSubsystem } from "../Subsystem";
 
 export class ZGameFeaturesSubsystem extends ZSubsystem {

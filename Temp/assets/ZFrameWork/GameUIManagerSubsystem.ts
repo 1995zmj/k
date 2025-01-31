@@ -1,4 +1,6 @@
+import { AssetSubsystem } from "./AssetSubsystem";
 import { CommonUserWidgetClass, ZCommonUserWidget } from "./CommonUserWidget";
+import { GameInstance } from "./GameInstance";
 import { ZGameUIPolicy } from "./GameUIPolicy";
 import { ZSubsystem } from "./Subsystem";
 
@@ -24,18 +26,36 @@ export class ZGameUIManagerSubsystem extends ZSubsystem {
         }
     }
 
-
-
-     public notifyPlayerAdded(){
+    public notifyPlayerAdded() {
         if (this.currentPolicy) {
             this.currentPolicy.notifyPlayerAdded()
         }
     }
 
-    public notifyPlayerRemoved(){
+    public notifyPlayerRemoved() {
         if (this.currentPolicy) {
             this.currentPolicy.notifyPlayerRemoved()
         }
+    }
+
+    // 有可能返回空哦
+    public async createWidgetAsync<T extends ZCommonUserWidget>(widgetclass: CommonUserWidgetClass<T>) {
+        try {
+            let prefab = await GameInstance.getInstance().getSubsystem(AssetSubsystem).loadPrefabPromise(widgetclass.prefabPath)
+            console.log(prefab)
+            let node: cc.Node = cc.instantiate(prefab);
+            return new widgetclass(node)
+        } catch (error) {
+            return null
+        }
+    }
+
+    public createWidget<T extends ZCommonUserWidget>(widgetclass: CommonUserWidgetClass<T>, callback: (T) => void) {
+        GameInstance.getInstance().getSubsystem(AssetSubsystem).loadPrefab(widgetclass.prefabPath, (prefab) => {
+            console.log(prefab)
+            let node: cc.Node = cc.instantiate(prefab);
+            callback(new widgetclass(node))
+        })
     }
     // private prefabMap: Map<string, Prefab>;
     // constructor()

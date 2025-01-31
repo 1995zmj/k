@@ -1,31 +1,39 @@
 import { ZCommonActivatableWidget } from "./CommonActivatableWidget";
-import { ZCommonUserWidget } from "./CommonUserWidget";
-
-// export interface PanelClass<T extends BasePanel> {
-//     new(): T;
-// }
+import { CommonUserWidgetClass, ZCommonUserWidget } from "./CommonUserWidget";
+import { GameInstance } from "./GameInstance";
+import { ZGameUIManagerSubsystem } from "./GameUIManagerSubsystem";
 
 export class ZCommonActivatableWidgetContainerBase extends ZCommonUserWidget {
-    protected parentRoot: Node;
-    protected node: Node;
-    // protected nodeScript: BaseUI;
+    private _widgets: Map<CommonUserWidgetClass<ZCommonActivatableWidget>, ZCommonActivatableWidget>
 
-    constructor() {
-        super();
-        this.parentRoot = null;
-        this.node = null;
-        // this.nodeScript = null;
+    constructor(tag: string) {
+        super(null)
+        this._rootNode = new cc.Node()
+        this._rootNode.name = 'N_' + tag
+        this._rootNode.addComponent(cc.Widget)
+        let tempComp = this._rootNode.getComponent(cc.Widget)
+        tempComp.isAlignTop = true
+        tempComp.top = 0
+        tempComp.isAlignBottom = true
+        tempComp.bottom = 0
+        tempComp.isAlignLeft = true
+        tempComp.left = 0
+        tempComp.isAlignRight = true
+        tempComp.right = 0
+
+        this._widgets = new Map()
     }
 
-    public getPrefabPath(): string {
-        return ""
+    public addWidget<T extends ZCommonActivatableWidget>(widgetClass: CommonUserWidgetClass<T>) {
+        GameInstance.getInstance().getSubsystem(ZGameUIManagerSubsystem).createWidget(widgetClass, (tempLayout) => {
+            this._rootNode.addChild(tempLayout.rootNode)
+            this._widgets.set(widgetClass, tempLayout)
+        })
     }
 
-    public addWidget(activatableWidget: ZCommonActivatableWidget) {
-        // let path = BasePanel.getPrefabPath();
-        // GameInstance.getInstance().getSubsystem(AssetSubsystem).loadPrefab(path,(prefab) => {
-        //     const newNode = instantiate(prefab);
-        //     this.node.addChild(newNode);
-        // })
+    public removeWidget(widget: ZCommonActivatableWidget) {
+        widget.rootNode.removeFromParent()
+        let tempWdigetClass = widget.constructor as CommonUserWidgetClass<ZCommonActivatableWidget>
+        this._widgets.delete(tempWdigetClass)
     }
 }

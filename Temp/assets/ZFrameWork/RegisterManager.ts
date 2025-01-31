@@ -18,13 +18,13 @@ export async function loadModule(scriptPath, cb: (temp_module) => void) {
     }
 }
 
-export class RegisterClassManager {
-    private static instance: RegisterClassManager;
+export class RegisterManager {
+    private static instance: RegisterManager;
     // private curWorld: BaseWorld;
 
-    public static getInstance(): RegisterClassManager {
+    public static getInstance(): RegisterManager {
         if (this.instance == null) {
-            this.instance = new RegisterClassManager();
+            this.instance = new RegisterManager();
         }
         return this.instance;
     }
@@ -37,6 +37,10 @@ export class RegisterClassManager {
         // this.typeToClassName = new Map();
         // this.classNameToClass = new Map();
         this.bundleScriptRootPath = new Map();
+    }
+
+    public registerEnumMember(){
+
     }
 
 
@@ -67,19 +71,27 @@ export class RegisterClassManager {
         }
     }
 
-    public  getClass(bundelName: string, scriptPath: string): void  {
+    public getClass(bundelName: string, scriptPath: string): void  {
         // G101GameLayout
         // let path = cc.path.join('../', bundelName, 'script', scriptPath)
-        let path = '../' + bundelName + '/script/' + scriptPath + '.ts'
+        // let path = '../' + bundelName + '/script/' + scriptPath + '.ts'
         // import { G101GameLayout } from "../G101/script/G101GameLayout";
         // let rootPath = bundleScriptRootPath[bundelName]
-        console.log(path)
+        // console.log(path)
         // ../G101/script/G101GameLayout
         // import(path).then((tempModeule) => {
         //     console.log(tempModeule)
         // }).catch((error) => {
         //     console.error('Failed to load module:', error);
         // });
-        this.loadClass(path)
+        // this.loadClass(path)
+        const path = './Subsystem';
+        import(path).then((module) => {
+            // 从模块中解构出 ZSubsystem 类
+            console.log(module)
+
+        }).catch((error) => {
+            console.error('模块加载出错:', error);
+        });
     }
 }

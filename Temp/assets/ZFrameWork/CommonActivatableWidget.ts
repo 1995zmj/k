@@ -1,24 +1,11 @@
 import { ZCommonUserWidget } from "./CommonUserWidget";
+import { ZPrimaryGameLayout } from "./PrimaryGameLayout";
 
 // export interface PanelClass<T extends BasePanel> {
 //     new(): T;
 // }
 
 export class ZCommonActivatableWidget extends ZCommonUserWidget {
-    protected parentRoot: Node;
-    protected node: Node;
-    // protected nodeScript: BaseUI;
-
-    constructor() {
-        super();
-        this.parentRoot = null;
-        this.node = null;
-        // this.nodeScript = null;
-    }
-
-    public getPrefabPath(): string {
-        return ""
-    }
 
     // public preLoadRes() {
     //     // let path = BasePanel.getPrefabPath();
@@ -27,6 +14,10 @@ export class ZCommonActivatableWidget extends ZCommonUserWidget {
     //     //     this.node.addChild(newNode);
     //     // })
     // }
+
+    public initLate() {
+
+    }
 
     // // 还没有资源
     // public init(parent: Node = null, openLate: Function) {
@@ -76,4 +67,12 @@ export class ZCommonActivatableWidget extends ZCommonUserWidget {
     //     this.node = null;
     //     this.nodeScript = null;
     // }
+
+    public bindBtnEvent(btnNode: cc.Node, func: (button) => void) {
+        btnNode.on('click', func, this);
+    }
+
+    public closeSelf(): void {
+        ZPrimaryGameLayout.getPrimaryGameLayout().findAndRemoveWidgetFromLayer(this)
+    }
 }

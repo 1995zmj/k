@@ -9,7 +9,7 @@
 import { AssetSubsystem } from "./AssetSubsystem";
 import { GameInstance } from "./GameInstance";
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 // 挂在场景根节点，用来加载初始化的
 @ccclass
 export default class ExperienceManagerComponent extends cc.Component {
@@ -23,8 +23,12 @@ export default class ExperienceManagerComponent extends cc.Component {
     @property(cc.Prefab)
     myPrefab: cc.Prefab = null;
 
-    start () {
+    public start(): void {
         GameInstance.getInstance().addLocalPlayer()
+    }
+
+    initLate() {
+
     }
 
     onDestroy() {

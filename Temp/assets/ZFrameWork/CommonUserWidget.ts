@@ -3,14 +3,28 @@ import { ZObject } from "./Object";
 ZObject
 
 export interface CommonUserWidgetClass<T extends ZCommonUserWidget> {
-    new(): T
+    new(node: cc.Node): T
     prefabPath: string
 }
 
 export class ZCommonUserWidget extends ZObject {
     static prefabPath: string = '';
-    private rootNode: cc.Node;
+    protected _rootNode: cc.Node;
 
+    constructor(node: cc.Node) {
+        super();
+        this._rootNode = node
+        // 这里要添加引用计数，（不挂在根节点会被回收的）
+        this.init()
+    }
+
+    public get rootNode() : cc.Node {
+        return this._rootNode
+    }
+
+    public init(){
+
+    }
 
     // public preLoadRes() {
     //     // let path = BasePanel.getPrefabPath();
@@ -32,10 +46,6 @@ export class ZCommonUserWidget extends ZObject {
     //     }
     //     this.initPrefab(func);
     // }
-
-    public init(node: cc.Node) {
-        this.rootNode = node
-    }
 
     // // 资源加载完之后
     // public initLate() {

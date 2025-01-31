@@ -9,4 +9,6 @@ export class ZObject
         
     }
     public static zmt:string = "zzz"
+
+    // 要一个创建和销毁的函数
 }
