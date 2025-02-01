@@ -12,6 +12,6 @@ export default class MainMenuExperienceManagerComponent extends ExperienceManage
 
     override start(): void {
         super.start()
-        ZPrimaryGameLayout.getPrimaryGameLayout().pushWidgetToLayerStackAsync('T1', ZMainMeauLayer)
+        // ZPrimaryGameLayout.getPrimaryGameLayout().pushWidgetToLayerStackAsync('T1', ZMainMeauLayer)
     }
 }
