@@ -1,13 +1,14 @@
 import { ZCommonActivatableWidget } from "./CommonActivatableWidget";
-import { CommonUserWidgetClass, ZCommonUserWidget } from "./CommonUserWidget";
+import { ZCommonUserWidget, ZCommonUserWidgetClass } from "./CommonUserWidget";
 import { GameInstance } from "./GameInstance";
 import { ZGameUIManagerSubsystem } from "./GameUIManagerSubsystem";
+import { ZClass, ZObject } from "./Object";
 
 export class ZCommonActivatableWidgetContainerBase extends ZCommonUserWidget {
-    private _widgets: Map<CommonUserWidgetClass<ZCommonActivatableWidget>, ZCommonActivatableWidget>
+    private _widgets: Map<ZClass<ZCommonActivatableWidget>, ZCommonActivatableWidget>
 
     constructor(tag: string) {
-        super(null)
+        super()
         this._rootNode = new cc.Node()
         this._rootNode.name = 'N_' + tag
         this._rootNode.addComponent(cc.Widget)
@@ -24,8 +25,16 @@ export class ZCommonActivatableWidgetContainerBase extends ZCommonUserWidget {
         this._widgets = new Map()
     }
 
-    public addWidget<T extends ZCommonActivatableWidget>(widgetClass: CommonUserWidgetClass<T>) {
-        GameInstance.getInstance().getSubsystem(ZGameUIManagerSubsystem).createWidget(widgetClass, (tempLayout) => {
+    public onDestroy(): void {
+        this.removeAllWidget()
+        this._rootNode.removeFromParent()
+        this._rootNode = null
+        super.onDestroy()
+    }
+
+    public addWidget<T extends ZCommonActivatableWidget>(widgetClass: ZClass<T>) {
+        let tempWidgetClass = widgetClass as ZCommonUserWidgetClass<T>
+        GameInstance.getInstance().getSubsystem(ZGameUIManagerSubsystem).createWidget(tempWidgetClass, (tempLayout) => {
             this._rootNode.addChild(tempLayout.rootNode)
             this._widgets.set(widgetClass, tempLayout)
         })
@@ -33,7 +42,14 @@ export class ZCommonActivatableWidgetContainerBase extends ZCommonUserWidget {
 
     public removeWidget(widget: ZCommonActivatableWidget) {
         widget.rootNode.removeFromParent()
-        let tempWdigetClass = widget.constructor as CommonUserWidgetClass<ZCommonActivatableWidget>
+        let tempWdigetClass = widget.constructor as ZClass<ZCommonActivatableWidget>
         this._widgets.delete(tempWdigetClass)
+    }
+
+    public removeAllWidget() {
+        this._widgets.forEach((value, key) => {
+            ZObject.destroy(value)
+        });
+        this._widgets.clear()
     }
 }

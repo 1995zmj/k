@@ -5,10 +5,16 @@ export interface ZClass<T extends ZObject>
 
 export class ZObject 
 { 
+    uid:number = 0
     constructor() {
         
     }
     public static zmt:string = "zzz"
+    public static destroy(object: ZObject){
+        object.onDestroy()
+    }
 
-    // 要一个创建和销毁的函数
+    public onDestroy(){
+
+    }
 }

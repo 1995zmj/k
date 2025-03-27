@@ -1,5 +1,5 @@
 import { AssetSubsystem } from "./AssetSubsystem";
-import { CommonUserWidgetClass, ZCommonUserWidget } from "./CommonUserWidget";
+import { ZCommonUserWidget, ZCommonUserWidgetClass } from "./CommonUserWidget";
 import { GameInstance } from "./GameInstance";
 import { ZGameUIPolicy } from "./GameUIPolicy";
 import { ZSubsystem } from "./Subsystem";
@@ -13,7 +13,7 @@ export class ZGameUIManagerSubsystem extends ZSubsystem {
     constructor() {
         super();
         // TODO 这里要创建一个现在先固定后面可以配置
-        this._currentPolicy = new ZGameUIPolicy()
+        this._currentPolicy = GameInstance.getInstance().newObject(ZGameUIPolicy)
     }
 
     public get currentPolicy(): ZGameUIPolicy {
@@ -38,63 +38,15 @@ export class ZGameUIManagerSubsystem extends ZSubsystem {
         }
     }
 
-    // 有可能返回空哦
-    public async createWidgetAsync<T extends ZCommonUserWidget>(widgetclass: CommonUserWidgetClass<T>) {
-        try {
-            let prefab = await GameInstance.getInstance().getSubsystem(AssetSubsystem).loadPrefabPromise(widgetclass.prefabPath)
-            console.log(prefab)
-            let node: cc.Node = cc.instantiate(prefab);
-            return new widgetclass(node)
-        } catch (error) {
-            return null
-        }
-    }
-
-    public createWidget<T extends ZCommonUserWidget>(widgetclass: CommonUserWidgetClass<T>, callback: (T) => void) {
+    public createWidget<T extends ZCommonUserWidget>(widgetclass: ZCommonUserWidgetClass<T>, callback: (T) => void) {
         GameInstance.getInstance().getSubsystem(AssetSubsystem).loadPrefab(widgetclass.prefabPath, (prefab) => {
             console.log(prefab)
             let node: cc.Node = cc.instantiate(prefab);
-            callback(new widgetclass(node))
+            let widget = new widgetclass()
+            widget.initNode(node)
+            callback(widget)
         })
     }
-    // private prefabMap: Map<string, Prefab>;
-    // constructor()
-    // {
-    //     super();
-    //     console.log("AssetSubsystem create");
-    //     this.prefabMap = new Map();
-    // }
-
-    // public loadPrefab(prefabPath:string, callback: Function)
-    // {
-    //     console.log(prefabPath);
-    //     let tempPrefab = this.prefabMap.get(prefabPath);
-    //     if (tempPrefab) {
-    //         callback(tempPrefab)
-    //     }
-    //     else
-    //     {
-    //         resources.load(prefabPath, Prefab, (err, prefab) => {
-    //             if (err) {
-    //                 console.log(err);
-    //             }
-    //             this.prefabMap[prefabPath] = prefab;
-    //             callback(prefab)
-    //         });
-    //     }
-    // }
-
-
-    // public loadSpriteFrame(spriteFramePath:string, callback: Function)
-    // {
-    //     console.log(spriteFramePath);
-    //     resources.load(spriteFramePath, SpriteFrame, (err, spriteFrame) => {
-    //         if (err) {
-    //             console.log(err);
-    //         }
-    //         callback(spriteFrame)
-    //     });
-    // }
 }
 
 

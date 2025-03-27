@@ -1,0 +1,55 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "witch_idle",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.6,
+  "sample": 10,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "6430a09c-5e63-486c-8664-cd3fc9e808de"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "00711e08-3b15-4f7d-a4d6-f3a1b31ff063"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "a25038a9-3c75-44b8-88d6-750c0c7338f8"
+            }
+          },
+          {
+            "frame": 0.3,
+            "value": {
+              "__uuid__": "808ec26c-a085-412b-93d3-e13193da47bc"
+            }
+          },
+          {
+            "frame": 0.4,
+            "value": {
+              "__uuid__": "f5e517fa-2682-4ef5-973f-8dbe41408942"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "d34ef153-185a-499e-adf3-2f3a3e1a4e11"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

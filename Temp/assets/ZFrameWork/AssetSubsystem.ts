@@ -1,27 +1,13 @@
-import { RegisterClassManager } from "./RegisterManager";
 import { ZSubsystem } from "./Subsystem";
 
-
-
-
-
 export class AssetSubsystem extends ZSubsystem {
+    // TODO 还没有销毁 这个还是有点问题的
     private prefabMap: Map<string, cc.Prefab>;
     constructor() {
         super();
         console.log("AssetSubsystem create");
         this.prefabMap = new Map();
-        
     }
-
-    // public loadCommonUserWidgetClass(CommonUserWidgetClassString: string, callback: (CommonUserWidgetClass, prefab) => void){
-    //     // let CommonUserWidgetClass = RegisterClassManager.getInstance().getCommonUserWidgetClassByName(CommonUserWidgetClassString)
-    //     loadModule()
-    //     this.loadPrefab(CommonUserWidgetClass.prefabPath, (perfab)=>{
-    //         callback(CommonUserWidgetClass, perfab)
-    //     })
-    // }
-   
 
     public loadPrefab(prefabPath: string, callback: (prefabClass: cc.Prefab) => void) {
         let tempPrefab = this.prefabMap.get(prefabPath);
@@ -34,7 +20,7 @@ export class AssetSubsystem extends ZSubsystem {
                     console.log(err);
                     return;
                 }
-                this.prefabMap.set(prefabPath, prefab);
+                // this.prefabMap.set(prefabPath, prefab);
                 callback(prefab);
             });
         }

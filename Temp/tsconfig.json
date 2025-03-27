@@ -6,9 +6,7 @@
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "outDir": "temp/vscode-dist",
-    "forceConsistentCasingInFileNames": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true
   },
   "exclude": [
     "node_modules",

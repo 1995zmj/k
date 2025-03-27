@@ -1,0 +1,22 @@
+{
+    "gameModeClassString": "ZMainGameMode",
+    "gameStateClassString": "ZMainGameState", 
+    "experienceConfig": {
+        "gameFeaturesToEnable": [],
+        "defaultPawnData": {
+            "pawnClass": "ZPawn",
+            "animationPath": "char/c2/c2_animation_node",
+            "abilitySets": [],
+            "tagRelationshipMapping": [],
+            "inputConfig": "",
+            "defaultCameraMode": ""
+        },
+        "actions": [
+            {
+                "actionClassName": "AddWidget",
+                "data": [["LayoutRequest", "ZMainGameLayer", "UI.Layer.Game"]]
+            }
+        ],
+        "actionSets": []
+    }
+}

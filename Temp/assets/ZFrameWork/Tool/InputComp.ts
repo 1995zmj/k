@@ -75,7 +75,7 @@ export default class InputComp extends cc.Component {
 
     protected update(dt: number): void {
         let curPositon = this.node.getPosition()
-        this.node.setPosition(cc.v3(curPositon.x + this.dirction.x * this.speed, curPositon.y + this.dirction.y * this.speed, curPositon.z))
+        this.node.setPosition(cc.v2(curPositon.x + this.dirction.x * this.speed, curPositon.y + this.dirction.y * this.speed))
     }
 
 }

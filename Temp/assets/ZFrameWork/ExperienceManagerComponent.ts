@@ -1,37 +1,48 @@
-// Learn TypeScript:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/typescript.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
-// import { G01GameLayout } from "../G101/script/G101GameLayout";
-import { AssetSubsystem } from "./AssetSubsystem";
-import { GameInstance } from "./GameInstance";
+import { ExperienceData } from "./DefinitionConfidg/GameModeConfigContainer";
+import { ZGameFeatureAction } from "./GameFeature/GameFeatureAction";
+import { Delegate, DelegateManager } from "./GameManager/DelegateManager";
+import { RegisterManager } from "./GameManager/RegisterManager";
+import { ZGameStateComponent } from "./ModularGameplay/GameStateComponent";
 
-const { ccclass, property } = cc._decorator;
-// 挂在场景根节点，用来加载初始化的
-@ccclass
-export default class ExperienceManagerComponent extends cc.Component {
+enum EExperienceLoadState{
+    Unloaded,
+	Loading,
+	LoadingGameFeatures,
+	LoadingChaosTestingDelay,
+	ExecutingActions,
+	Loaded,
+	Deactivating
+}
 
-    @property(cc.JsonAsset)
-    experienceConfig: cc.JsonAsset = null;
+export default class ZExperienceManagerComponent extends ZGameStateComponent {
 
-    @property(cc.Node)
-    myNode: cc.Node = null;
+    private _loadState: EExperienceLoadState = EExperienceLoadState.Unloaded
+    private _currentExperience: ExperienceData = null
+    public onExperienceLoaded: Delegate = null
 
-    @property(cc.Prefab)
-    myPrefab: cc.Prefab = null;
-
-    public start(): void {
-        GameInstance.getInstance().addLocalPlayer()
+    constructor() {
+        super();
+        this.onExperienceLoaded = DelegateManager.getInstance().Create()
     }
 
-    initLate() {
-
+    public setCurrentExperience(experienceData: ExperienceData) {
+        this._currentExperience = experienceData
+        this.startExperienceLoad()
     }
 
-    onDestroy() {
-        GameInstance.getInstance().removeLocalPlayer()
+    public startExperienceLoad() {
+        console.log("开始 startExperienceLoad")
+        this._loadState = EExperienceLoadState.Loading
+
+        this._currentExperience.actions.forEach(element => {
+            let tempClassName = "ZGameFeatureAction_" + element.actionClassName
+            console.log("zmj actions", tempClassName)
+            let tempClass = RegisterManager.getInstance().getClassByName<ZGameFeatureAction>(tempClassName)
+            let gameFeatureAction = new tempClass()
+            gameFeatureAction.onGameFeatureActivating(element.data)
+        });
+
+        this.onExperienceLoaded.broadcast()
     }
 }

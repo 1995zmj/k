@@ -1,29 +1,41 @@
-import { ZObject } from "./Object";
+import { ZClass, ZObject } from "./Object";
 
-ZObject
-
-export interface CommonUserWidgetClass<T extends ZCommonUserWidget> {
-    new(node: cc.Node): T
+export interface ZCommonUserWidgetClass<T extends ZCommonUserWidget> extends ZClass<T>
+{
     prefabPath: string
 }
 
 export class ZCommonUserWidget extends ZObject {
-    static prefabPath: string = '';
+    public static prefabPath: string = '';
     protected _rootNode: cc.Node;
 
-    constructor(node: cc.Node) {
+    constructor() {
         super();
-        this._rootNode = node
-        // 这里要添加引用计数，（不挂在根节点会被回收的）
-        this.init()
     }
 
     public get rootNode() : cc.Node {
         return this._rootNode
     }
 
-    public init(){
+    public initNode(node: cc.Node){
+        this._rootNode = node
+        this.init()
+    }
 
+    public init() {
+
+    }
+
+    public initLate() {
+
+    }
+
+    public onDestroy(): void {
+        if (this._rootNode) {
+            this._rootNode.removeFromParent()
+        }
+        this._rootNode = null
+        super.onDestroy()
     }
 
     // public preLoadRes() {

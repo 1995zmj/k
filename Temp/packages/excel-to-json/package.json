@@ -1,0 +1,19 @@
+{
+	"name": "excel-to-json",
+	"version": "0.0.1",
+	"description": "excel 转 json",
+	"author": "zmj",
+	"main": "main.js",
+	"main-menu": {
+		"Tools/Excel To Json": {
+			"message": "excel-to-json:open-panel"
+		}
+	},
+	"panel": {
+		"main": "panel/index.js",
+		"type": "dockable",
+		"title": "Excel To Json",
+		"width": 400,
+		"height": 300
+	}
+}
