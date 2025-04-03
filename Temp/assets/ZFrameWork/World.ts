@@ -9,26 +9,15 @@ import { ZObject } from "./Object"
 export class ZWorld extends ZObject {
     protected _rootNode: cc.Node
 
-    private _actorList: Array<ZActor> = new Array()
-    private _lateDestroyActors: Array<ZActor> = new Array()
-    private _uidToIndex: Map<number, number> = new Map()
-
-    private _gameMode: ZGameMode
-    private _curGameModeData: GameModeData
-
-    // 给每个生成的实例一个uid  显示比较简单的++
-    private _uidIndex: number = -1
-
     public set rootNode(node: cc.Node) {
         this._rootNode = node
     }
 
+    private _gameMode: ZGameMode = null
+    private _curGameModeData: GameModeData = null
+
     public get gameMode(): ZGameMode {
         return this._gameMode
-    }
-
-    public getNextUid() {
-        return ++this._uidIndex
     }
 
     public setGameConfig(config: GameModetConfigContainer) {
@@ -39,33 +28,43 @@ export class ZWorld extends ZObject {
         this._gameMode.init()
     }
 
+    // 这个应该是localplay初始完之后，要看是创建actor，gamemode 也是actor
+    public initializeActorsForPlay() {
+
+    }
+
+    public initLate() {
+        this._gameMode.initLate()
+    }
+
+    public update(dt) {
+        this._gameMode && this._gameMode.update(dt)
+    }
+
+    public destroy(): void {
+        if (this._gameMode) {
+            this._gameMode.destroy()
+        }
+        this._gameMode = null
+        this._curGameModeData = null
+
+        super.destroy()
+    }
+
+    // --------- actor 相关
+    private _actorList: Array<ZActor> = new Array()
+    private _lateDestroyActors: Array<ZActor> = new Array()
+    private _uidToIndex: Map<number, number> = new Map()
+    // 给每个生成的实例一个uid  显示比较简单的++
+    private _uidIndex: number = -1
+
+    public getNextUid() {
+        return ++this._uidIndex
+    }
+
     public spawnActorByName<T extends ZActor>(actorClassName: string): T {
         const tempClass = RegisterManager.getInstance().getActorClassByName<T>(actorClassName)
         return this.spawnActor<T>(tempClass)
-    }
-
-    public DestroyActor<T extends ZActor>(actor: T) {
-        let temp_uid = actor.uid
-        let actor_index = this._uidToIndex.get(temp_uid)
-        if (actor_index && this._actorList.length > actor_index) {
-            let lastIndex = this._actorList.length - 1
-            if (actor_index != lastIndex) {
-                // 如果是中间的 和最后一个交互
-                let lastActor = this._actorList.pop()
-                this._actorList[actor_index] = lastActor
-                this._uidToIndex[lastActor.uid] = actor_index
-            }
-            else {
-                // 最后一个直接弹出
-                this._actorList.pop()
-            }
-            this._uidToIndex.delete(temp_uid)
-            this._lateDestroyActors.push(actor)
-        }
-        else {
-            console.error("error destory actor is none")
-        }
-
     }
 
     public spawnActor<T extends ZActor>(actorClass: ZActorClass<T>): T {
@@ -97,8 +96,38 @@ export class ZWorld extends ZObject {
         return tempActor as T
     }
 
+    public destroyActor<T extends ZActor>(actor: T) {
+        let temp_uid = actor.uid
+        let actor_index = this._uidToIndex.get(temp_uid)
+        if (actor_index && this._actorList.length > actor_index) {
+            let lastIndex = this._actorList.length - 1
+            if (actor_index != lastIndex) {
+                // 如果是中间的 和最后一个交互
+                let lastActor = this._actorList.pop()
+                this._actorList[actor_index] = lastActor
+                this._uidToIndex[lastActor.uid] = actor_index
+            }
+            else {
+                // 最后一个直接弹出
+                this._actorList.pop()
+            }
+            this._uidToIndex.delete(temp_uid)
+            this._lateDestroyActors.push(actor)
+        }
+        else {
+            console.error("error destory actor is none")
+        }
+    }
+
     public getAllActor(): Array<ZActor> {
         return this._actorList
+    }
+
+    public clearAllActor(): void {
+        for (const actor of this._actorList) {
+            actor.destroy()
+        }
+        this._actorList = null
     }
 
     public getAllActorByClass<T extends ZActor>(actorClass: ZActorClass<T>): Array<ZActor> {
@@ -109,18 +138,5 @@ export class ZWorld extends ZObject {
             }
         }
         return tempList
-    }
-
-    // 这个应该是localplay初始完之后，要看是创建actor，gamemode 也是actor
-    public initializeActorsForPlay() {
-
-    }
-
-    public initLate() {
-        this._gameMode.initLate()
-    }
-
-    public update(dt) {
-        this._gameMode && this._gameMode.update(dt)
     }
 }

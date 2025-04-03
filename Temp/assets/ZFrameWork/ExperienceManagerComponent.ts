@@ -1,7 +1,7 @@
 
 import { ExperienceData } from "./DefinitionConfidg/GameModeConfigContainer";
 import { ZGameFeatureAction } from "./GameFeature/GameFeatureAction";
-import { Delegate, DelegateManager } from "./GameManager/DelegateManager";
+import { Delegate } from "./GameManager/Delegate";
 import { RegisterManager } from "./GameManager/RegisterManager";
 import { ZGameStateComponent } from "./ModularGameplay/GameStateComponent";
 
@@ -23,7 +23,7 @@ export default class ZExperienceManagerComponent extends ZGameStateComponent {
 
     constructor() {
         super();
-        this.onExperienceLoaded = DelegateManager.getInstance().Create()
+        this.onExperienceLoaded = Delegate.create<()=>void>()
     }
 
     public setCurrentExperience(experienceData: ExperienceData) {
@@ -43,6 +43,12 @@ export default class ZExperienceManagerComponent extends ZGameStateComponent {
             gameFeatureAction.onGameFeatureActivating(element.data)
         });
 
+
         this.onExperienceLoaded.broadcast()
+    }
+
+    public destroy(): void {
+        this.onExperienceLoaded.destroy()
+        super.destroy()
     }
 }

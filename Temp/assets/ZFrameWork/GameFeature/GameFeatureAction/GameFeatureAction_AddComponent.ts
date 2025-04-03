@@ -23,7 +23,8 @@ export class ZGameFeatureAction_AddComponent extends ZGameFeatureAction_AddWidge
     }
 
     public addToWorld(context: any) {
-        this.addComponents(context)
+        // 还不完善先不使用
+        // this.addComponents(context)
     }
 
     public addComponents(context: any) {

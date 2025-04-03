@@ -1,5 +1,7 @@
 import { CommonUIExtensions } from "../../CommonUIExtensions";
+import { GameInstance } from "../../GameInstance";
 import { RegisterManager } from "../../GameManager/RegisterManager";
+import { ZUIExtensionSystem } from "../../UIExtension/UIExtensionSystem";
 import { ZGameFeatureAction_WorldActionBase } from "./ZGameFeatureAction_WorldActionBase";
 
 export interface LayoutRequest {
@@ -22,7 +24,8 @@ export class ZGameFeatureAction_AddWidget extends ZGameFeatureAction_WorldAction
     }
 
     public addToWorld(context: any){
-        this.addWidgets(context)
+        // TODO 还不完善 先不适用
+        // this.addWidgets(context)
     }
 
     public addWidgets(context: any){
@@ -34,6 +37,11 @@ export class ZGameFeatureAction_AddWidget extends ZGameFeatureAction_WorldAction
                 let layoutClassString = element[1]
                 let layerId = element[2]
                 CommonUIExtensions.pushContentToLayerByName(layerId, layoutClassString)
+            }
+            else if (tempType == 'ElementRequest') {
+                let elementClassString = element[1]
+                let slotName = element[2]
+                GameInstance.getInstance().getSubsystem(ZUIExtensionSystem).registerExtension(slotName, elementClassString)
             }
         });
     }

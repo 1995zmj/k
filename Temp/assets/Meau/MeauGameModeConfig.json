@@ -11,14 +11,6 @@
             "defaultCameraMode": ""
         },
         "actions": [
-            {
-                "actionClassName": "AddWidget",
-                "data": [["LayoutRequest", "ZMainMenuLayer", "UI.Layer.GameMenu"]]
-            },
-            {
-                "actionClassName": "AddComponent",
-                "data": [["ZMenuGameState", "ZMenuStateComponent"]]
-            }
         ],
         "actionSets": []
     }

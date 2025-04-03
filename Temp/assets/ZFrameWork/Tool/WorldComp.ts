@@ -4,7 +4,6 @@ import { ConfigManager } from "../GameManager/ConfigManager";
 import { RegisterManager } from "../GameManager/RegisterManager";
 import { ZGameMode } from "../GameMode";
 import { ZGameUIManagerSubsystem } from "../GameUIManagerSubsystem";
-import * as XLSX from 'xlsx';
 import { ZWorld } from "../World";
 
 const { ccclass, property } = cc._decorator;
@@ -14,8 +13,9 @@ export default class WorldComp extends cc.Component {
 
     @property(cc.JsonAsset)
     gameConfig: cc.JsonAsset = null
-    
-    _world:ZWorld = null
+
+    _world: ZWorld = null
+
     protected onLoad(): void {
         if (!this.gameConfig) {
             console.log('检查 gameConfig')
@@ -35,11 +35,11 @@ export default class WorldComp extends cc.Component {
     }
 
     protected update(dt: number): void {
-        GameInstance.getInstance().getWorld().update(dt)
+        // GameInstance.getInstance().getWorld().update(dt)
     }
 
-    // protected onDestroy(): void {
-    //     GameInstance.getInstance().getSubsystem(ZGameUIManagerSubsystem).notifyPlayerRemoved()
-    // }
+    protected onDestroy(): void {
+        GameInstance.getInstance().getSubsystem(ZGameUIManagerSubsystem).notifyPlayerRemoved()
+    }
 
 }

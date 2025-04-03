@@ -10,14 +10,6 @@ class RootViewportLayoutInfo {
 export class ZGameUIPolicy extends ZObject {
     private _rootViewLayoutInfo: RootViewportLayoutInfo = null
 
-    public onDestroy(){
-        if (this._rootViewLayoutInfo) {
-            ZObject.destroy(this._rootViewLayoutInfo.rootLayout)
-            this._rootViewLayoutInfo = null
-        }
-        super.onDestroy()
-    }
-    
     public getRootLayout(): ZPrimaryGameLayout {
         return this._rootViewLayoutInfo.rootLayout ? this._rootViewLayoutInfo.rootLayout : null
     }
@@ -36,15 +28,17 @@ export class ZGameUIPolicy extends ZObject {
         cc.director.getScene().getChildByName("Canvas").addChild(node)
     }
 
+    // 现在只设计一个人 这里就是初始化
     public notifyPlayerAdded() {
         this._rootViewLayoutInfo = new RootViewportLayoutInfo()
         this._rootViewLayoutInfo.rootLayout = this.createLayoutWidget()
         this.addView(this._rootViewLayoutInfo.rootLayout)
     }
 
+    // 现在只设计一个人 这里就是销毁
     public notifyPlayerRemoved() {
         if (this._rootViewLayoutInfo) {
-            ZObject.destroy(this._rootViewLayoutInfo.rootLayout)
+            this._rootViewLayoutInfo.rootLayout.destroy()
             this._rootViewLayoutInfo = null
         }
     }

@@ -30,12 +30,12 @@ export class ZCommonUserWidget extends ZObject {
 
     }
 
-    public onDestroy(): void {
+    public destroy(): void {
         if (this._rootNode) {
             this._rootNode.removeFromParent()
         }
         this._rootNode = null
-        super.onDestroy()
+        super.destroy()
     }
 
     // public preLoadRes() {

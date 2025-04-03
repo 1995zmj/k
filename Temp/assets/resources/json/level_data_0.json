@@ -1,0 +1,22 @@
+{
+    "1": {
+        "round_id": 1,
+        "tile_1": 0,
+        "tile_2": 0,
+        "tile_3": 1,
+        "tile_4": 0,
+        "tile_5": 0,
+        "tile_6": 0,
+        "tile_7": 0
+    },
+    "2": {
+        "round_id": 2,
+        "tile_1": 0,
+        "tile_2": 0,
+        "tile_3": 0,
+        "tile_4": 0,
+        "tile_5": 0,
+        "tile_6": 3,
+        "tile_7": 0
+    }
+}

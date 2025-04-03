@@ -29,6 +29,7 @@ Editor.Panel.extend({
 
             excel_root_path = path.join(Editor.Project.path, 'excel')
             save_root_path = "db://assets/DataSrc/"
+            save_json_root_path = "db://assets/resources/json/"
             fs.readdir(excel_root_path, (err, files) => {
                 if (err) {
                     Editor.error('读取目录出错')
@@ -60,19 +61,28 @@ Editor.Panel.extend({
                         nestedData[key] = row;
                     });
                     base_name = path.basename(excel_path, path.extname(excel_path))
-                    const jsonFilePath = save_root_path + base_name + '.ts';
-                    Editor.log(jsonFilePath)
+                    const tsFilePath = save_root_path + base_name + '.ts';
+                    Editor.log(tsFilePath)
 
-                    // 
-                    code_string = `export const data_${base_name} =`
-                    tempstring = code_string + JSON.stringify(nestedData, null, 4)
-                    Editor.assetdb.createOrSave(jsonFilePath, tempstring, function (err, results) {
+                    // 直接导出TS
+                    // code_string = `export const ${base_name} =`
+                    // tempstring = code_string + JSON.stringify(nestedData, null, 4)
+                    // Editor.assetdb.createOrSave(tsFilePath, tempstring, function (err, results) {
+                    //     if (err) {
+                    //         Editor.error('创建资源报错')
+                    //         return
+                    //     }
+                    //     completed_count += 1
+                    //     Editor.log(completed_count + '/' + max_count);
+                    // });
+                    
+
+                    const jsonFilePath = save_json_root_path + base_name + '.json';
+                    Editor.assetdb.createOrSave(jsonFilePath, JSON.stringify(nestedData, null, 4), function (err, results) {
                         if (err) {
                             Editor.error('创建资源报错')
                             return
                         }
-                        completed_count += 1
-                        Editor.log(completed_count + '/' + max_count);
                     });
                 })
             })

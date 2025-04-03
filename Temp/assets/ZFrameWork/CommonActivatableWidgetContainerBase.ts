@@ -25,18 +25,19 @@ export class ZCommonActivatableWidgetContainerBase extends ZCommonUserWidget {
         this._widgets = new Map()
     }
 
-    public onDestroy(): void {
+    public destroy(): void {
         this.removeAllWidget()
         this._rootNode.removeFromParent()
         this._rootNode = null
-        super.onDestroy()
+        super.destroy()
     }
 
-    public addWidget<T extends ZCommonActivatableWidget>(widgetClass: ZClass<T>) {
+    public addWidget<T extends ZCommonActivatableWidget>(widgetClass: ZClass<T>, callback?: (widget)=> void) {
         let tempWidgetClass = widgetClass as ZCommonUserWidgetClass<T>
         GameInstance.getInstance().getSubsystem(ZGameUIManagerSubsystem).createWidget(tempWidgetClass, (tempLayout) => {
             this._rootNode.addChild(tempLayout.rootNode)
             this._widgets.set(widgetClass, tempLayout)
+            callback && callback(tempLayout)
         })
     }
 
@@ -48,7 +49,7 @@ export class ZCommonActivatableWidgetContainerBase extends ZCommonUserWidget {
 
     public removeAllWidget() {
         this._widgets.forEach((value, key) => {
-            ZObject.destroy(value)
+            value.destroy()
         });
         this._widgets.clear()
     }

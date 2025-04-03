@@ -1,0 +1,19 @@
+{
+    "1": {
+        "item_id": 1,
+        "type": 1,
+        "value_1": 20
+    },
+    "2": {
+        "item_id": 2,
+        "type": 2,
+        "value_1": 10,
+        "value_2": 5
+    },
+    "3": {
+        "item_id": 3,
+        "type": 2,
+        "value_1": 10,
+        "value_2": 100
+    }
+}

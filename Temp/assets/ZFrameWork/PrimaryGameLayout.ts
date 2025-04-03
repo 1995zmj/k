@@ -3,10 +3,10 @@ import { ZCommonActivatableWidgetContainerBase } from "./CommonActivatableWidget
 import { ZCommonUserWidget } from "./CommonUserWidget";
 import { GameInstance } from "./GameInstance";
 import { ZGameUIManagerSubsystem } from "./GameUIManagerSubsystem";
-import { ZClass, ZObject } from "./Object";
+import { ZClass } from "./Object";
 
 export class ZPrimaryGameLayout extends ZCommonUserWidget {
-    private _layers: Map<string, ZCommonActivatableWidgetContainerBase>;
+    private _layers: Map<string, ZCommonActivatableWidgetContainerBase> = new Map();
 
     constructor() {
         super();
@@ -24,18 +24,17 @@ export class ZPrimaryGameLayout extends ZCommonUserWidget {
         tempComp.right = 0
         let debugNode = this.createDebguNode()
         this._rootNode.addChild(debugNode)
-        this._layers = new Map()
         this.registerLayer('UI.Layer.Game')
         this.registerLayer('UI.Layer.GameMenu')
         this.registerLayer('UI.Layer.Menu')
         this.registerLayer('UI.Layer.Moal')
     }
 
-    public onDestroy(): void {
+    public destroy(): void {
         this.clearLayer()
         this._rootNode.removeFromParent()
         this._rootNode = null
-        super.onDestroy()
+        super.destroy()
     }
 
     public static getPrimaryGameLayout(): ZPrimaryGameLayout {
@@ -55,7 +54,7 @@ export class ZPrimaryGameLayout extends ZCommonUserWidget {
 
     private clearLayer() {
         this._layers.forEach((value, key) => {
-            ZObject.destroy(value)
+            value.destroy()
         });
         this._layers.clear()
     }
@@ -70,9 +69,9 @@ export class ZPrimaryGameLayout extends ZCommonUserWidget {
         return this._layers.get(layerName)
     }
 
-    public pushWidgetToLayerStackAsync<T extends ZCommonActivatableWidget>(layerName: string, activatableWidgetClass: ZClass<T>): void {
+    public pushWidgetToLayerStackAsync<T extends ZCommonActivatableWidget>(layerName: string, activatableWidgetClass: ZClass<T>, callback?: (widget) => void): void {
         let layer = this.getLayer(layerName)
-        layer.addWidget(activatableWidgetClass)
+        layer.addWidget(activatableWidgetClass, callback)
     }
 
     public findAndRemoveWidgetFromLayer(wdiget: ZCommonActivatableWidget) {

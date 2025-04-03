@@ -11,12 +11,7 @@
             "inputConfig": "",
             "defaultCameraMode": ""
         },
-        "actions": [
-            {
-                "actionClassName": "AddWidget",
-                "data": [["LayoutRequest", "ZMainGameLayer", "UI.Layer.Game"]]
-            }
-        ],
+        "actions": [],
         "actionSets": []
     }
 }

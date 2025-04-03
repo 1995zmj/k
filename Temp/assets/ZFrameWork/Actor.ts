@@ -11,10 +11,10 @@ export interface ZActorClass<T extends ZActor> {
 // TODO 分成了 本身的node节点，还有displaynode 这个后面挂接的表现类
 export class ZActor extends ZObject {
     private _ownedComponents: Map<ZClass<ZActorComponent>, ZActorComponent> = new Map()
-    protected _world:ZWorld
-    public static prefabPath: string = '';
-    protected _rootNode: cc.Node = null;
-    protected _displayNode: cc.Node = null;
+    protected _world: ZWorld = null
+    public static prefabPath: string = ''
+    protected _rootNode: cc.Node = null
+    protected _displayNode: cc.Node = null
     private _wantUpdateDisplayNodeCount: number = 0
 
     public get rootNode(): cc.Node {
@@ -27,6 +27,15 @@ export class ZActor extends ZObject {
         this.uid = this._world.getNextUid()
         this._rootNode = new cc.Node()
         this._rootNode.name = this.constructor.name + '-' + this.uid
+    }
+
+
+    public destroy() {
+        this._rootNode.removeFromParent()
+        this._rootNode = null
+        this._displayNode = null
+        this._world = null
+        super.destroy()
     }
 
     public preInitializeComponents() {
@@ -45,7 +54,10 @@ export class ZActor extends ZObject {
 
     }
 
-    public initNode(node:cc.Node) {
+    public initNode(node: cc.Node) {
+        this._ownedComponents.forEach((value, key) => {
+            value.destroy()
+        });
         this._rootNode.addChild(node)
         this._displayNode = node
         if (this._wantUpdateDisplayNodeCount > 0) {
@@ -54,20 +66,19 @@ export class ZActor extends ZObject {
         }
     }
 
-    public tryUpdateDisplayNode(){
+    public tryUpdateDisplayNode() {
         if (this._displayNode) {
             this.onUpdateDisplayNode()
         }
-        else
-        {
+        else {
             this._wantUpdateDisplayNodeCount += 1
         }
     }
 
-    public onUpdateDisplayNode(){
-        
+    public onUpdateDisplayNode() {
+
     }
-    
+
 
     public init() {
         this._ownedComponents.forEach((value, key) => {
@@ -84,5 +95,17 @@ export class ZActor extends ZObject {
         let component = GameInstance.getInstance().newObject(componentClass)
         this._ownedComponents.set(componentClass, component)
         return component
+    }
+
+    public clearAllComponents() {
+        for (const key in this._ownedComponents) {
+            let tempComponent = this._ownedComponents[key]
+            tempComponent.destroy()
+        }
+        this._ownedComponents.clear()
+    }
+
+    public getComponents(): Map<ZClass<ZActorComponent>, ZActorComponent> {
+        return this._ownedComponents
     }
 }

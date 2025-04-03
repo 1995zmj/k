@@ -1,0 +1,17 @@
+{
+    "gameModeClassString": "ZGameMode",
+    "gameStateClassString": "ZHallGameState",
+    "experienceConfig": {
+        "gameFeaturesToEnable": [],
+        "defaultPawnData": {
+            "pawnClass": "",
+            "abilitySets": [],
+            "tagRelationshipMapping": [],
+            "inputConfig": "",
+            "defaultCameraMode": ""
+        },
+        "actions": [
+        ],
+        "actionSets": []
+    }
+}

@@ -82,6 +82,11 @@ export default class ZTile extends ZActor {
         return 0
     }
 
+    public triggerItem()
+    {
+        
+    }
+
     public destroyCurItemId(){
         this._costIndex = this._curIndex
         this.tryUpdateDisplayNode()

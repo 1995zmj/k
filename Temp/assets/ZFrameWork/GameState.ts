@@ -15,7 +15,6 @@ export class ZGameState extends ZActor
     public loaded(){
         console.log("gamestate loaded")
     }
-
 }
 
 RegisterManager.getInstance().registertActorClass(ZGameState)

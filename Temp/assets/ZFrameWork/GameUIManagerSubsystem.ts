@@ -4,8 +4,6 @@ import { GameInstance } from "./GameInstance";
 import { ZGameUIPolicy } from "./GameUIPolicy";
 import { ZSubsystem } from "./Subsystem";
 
-
-
 export class ZGameUIManagerSubsystem extends ZSubsystem {
 
     private _currentPolicy: ZGameUIPolicy
@@ -13,7 +11,7 @@ export class ZGameUIManagerSubsystem extends ZSubsystem {
     constructor() {
         super();
         // TODO 这里要创建一个现在先固定后面可以配置
-        this._currentPolicy = GameInstance.getInstance().newObject(ZGameUIPolicy)
+        
     }
 
     public get currentPolicy(): ZGameUIPolicy {
@@ -27,14 +25,17 @@ export class ZGameUIManagerSubsystem extends ZSubsystem {
     }
 
     public notifyPlayerAdded() {
-        if (this.currentPolicy) {
-            this.currentPolicy.notifyPlayerAdded()
+        if (!this.currentPolicy) {
+            this._currentPolicy = GameInstance.getInstance().newObject(ZGameUIPolicy)
         }
+        this.currentPolicy.notifyPlayerAdded()
+
     }
 
     public notifyPlayerRemoved() {
         if (this.currentPolicy) {
             this.currentPolicy.notifyPlayerRemoved()
+            this.currentPolicy = null
         }
     }
 

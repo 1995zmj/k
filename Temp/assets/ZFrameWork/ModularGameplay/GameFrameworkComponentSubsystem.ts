@@ -13,7 +13,7 @@ class ComponentRequest {
     receiverClassName: string
     componentClassName: string
 }
-
+// TODO 都还没有销毁
 export class ZGameFrameworkComponentSubsystem extends ZSubsystem {
     public static AddGameFrameworkComponentReceiver(receiver: ZActor) {
         let gfc = GameInstance.getInstance().getSubsystem(ZGameFrameworkComponentSubsystem)
@@ -24,6 +24,10 @@ export class ZGameFrameworkComponentSubsystem extends ZSubsystem {
 
     public static removeGameFrameworkComponentReceiver(receiver: ZActor) {
 
+        let gfc = GameInstance.getInstance().getSubsystem(ZGameFrameworkComponentSubsystem)
+        if (gfc) {
+            gfc.removeReceiverInternal(receiver)
+        }
     }
 
     public static sendGameFrameworkComponentExtensionEvent(receiver: ZActor, eventName: string) {
@@ -42,6 +46,33 @@ export class ZGameFrameworkComponentSubsystem extends ZSubsystem {
                 }
             })
         }
+    }
+
+    public removeReceiverInternal(receiver: ZActor) {
+        receiver.getComponents()
+        // TInlineComponentArray<UActorComponent*> ComponentsToDestroy;
+        // for (UActorComponent* Component : Receiver->GetComponents())
+        // {
+        //     if (UActorComponent* GFC = Cast<UActorComponent>(Component))
+        //     {
+        //         UClass* ComponentClass = GFC->GetClass();
+        //         TSet<FObjectKey>* ComponentInstances = ComponentClassToComponentInstanceMap.Find(ComponentClass);
+        //         if (ComponentInstances)
+        //         {
+        //             if (ComponentInstances->Contains(GFC))
+        //             {
+        //                 ComponentsToDestroy.Add(GFC);
+        //             }
+        //         }
+        //     }
+        // }
+
+        // for (UActorComponent* Component : ComponentsToDestroy)
+        // {
+        //     DestroyInstancedComponent(Component);
+        // }
+
+        // SendExtensionEventInternal(Receiver, NAME_ReceiverRemoved);
     }
 
     public createComponentOnInstance(receiver: ZActor, componentClassName: string, flags: string) {
@@ -79,6 +110,10 @@ export class ZGameFrameworkComponentSubsystem extends ZSubsystem {
                 }
             }
         }
+
+    }
+
+    public removeComponentOnInstance() {
 
     }
 }

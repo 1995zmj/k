@@ -1,3 +1,5 @@
+import { GameInstance } from "./GameInstance";
+
 export interface ZClass<T extends ZObject>
 {
     new(): T;
@@ -5,16 +7,12 @@ export interface ZClass<T extends ZObject>
 
 export class ZObject 
 { 
-    uid:number = 0
+    uid:number = -1
     constructor() {
-        
-    }
-    public static zmt:string = "zzz"
-    public static destroy(object: ZObject){
-        object.onDestroy()
+        // this.uid = GameInstance.getInstance().getNextUid()
     }
 
-    public onDestroy(){
-
+    public destroy(){
+        // GameInstance.getInstance().destroyObject(this)
     }
 }
