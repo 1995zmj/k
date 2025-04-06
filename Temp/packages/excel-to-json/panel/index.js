@@ -24,7 +24,7 @@ Editor.Panel.extend({
             this.$label.innerText = 'donging...';
             Editor.log(Editor.Project.path);
             const fs = require('fs');
-            const xlsx = require('xlsx');
+            const xlsx = require('../xlsx/xlsx');
             const path = require('path');
 
             excel_root_path = path.join(Editor.Project.path, 'excel')
